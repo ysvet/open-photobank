@@ -1,0 +1,79 @@
+.LanguageSwitch {
+  margin: 10px 0;
+  box-sizing: border-box;
+  display: block;
+  width: 100%;
+  font-size: 1rem;
+}
+
+.LanguageButton {
+  color: white;
+  /* background-color: #96A3B1;  */
+  background-color: #b6b8b9;
+  /* background-color: #96a3b1; */
+  border: none;
+  width: 40px;
+  box-sizing: border-box;
+  display: block;
+  cursor: pointer;
+  margin: 2px;
+  outline: none;
+}
+
+.LanguageButtonActive {
+  color: white;
+  background-color: #9cb1c7;
+  border: none;
+  width: 40px;
+  box-sizing: border-box;
+  display: block;
+  cursor: pointer;
+  margin: 2px;
+}
+
+.LanguageButtonActive:focus {
+  outline: 0;
+}
+
+.LanguageButton:hover,
+.LanguageButton:active,
+.LanguageButton.active {
+  color: #40a4c8;
+}
+
+@media (min-width: 550px) {
+  .LanguageSwitch {
+    margin: 0;
+    display: flex;
+    align-items: center;
+    width: auto;
+    height: 70px;
+  }
+
+  .LanguageButton {
+    color: white;
+    height: 70px;
+    padding: 27px 10px;
+
+    cursor: pointer;
+  }
+
+  .LanguageButtonActive {
+    color: white;
+    height: 70px;
+    padding: 32px 10px;
+
+    cursor: pointer;
+  }
+
+  .LanguageButton:hover,
+  .LanguageButton:active,
+  .LanguageButton.active {
+    background-color: #40a4c8;
+    color: white;
+  }
+
+  .LanguageButtonActive:focus {
+    outline: 0;
+  }
+}

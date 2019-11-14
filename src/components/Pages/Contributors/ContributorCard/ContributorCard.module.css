@@ -1,0 +1,135 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans');
+
+/* * {
+  box-sizing: border-box;
+} */
+
+.ContrCard {
+  margin: 0.9em;
+  height: 10em;
+  max-width: 145em;
+  flex: 1 1 auto;
+  display: flex;
+  /* background-color: white; */
+  background: rgb(185, 198, 213);
+  background: linear-gradient(
+    90deg,
+    rgba(185, 198, 213, 0) 0%,
+    rgba(185, 198, 213, 0) 49%,
+    rgba(185, 198, 213, 0.8707865168539326) 85%,
+    rgba(185, 198, 213, 0.8707865168539326) 100%,
+    rgba(185, 198, 213, 1) 100%
+  );
+  box-shadow: 0 2px 3px #ccc;
+}
+
+.ContrCard:hover {
+  box-shadow: 0 2px 3px #40a4c8;
+}
+
+/* .ContrImage {
+  height: 100%;
+  max-width: 17em;
+  object-fit: cover;
+  flex: 1 1 auto;
+  border-radius: 50%;
+  padding: 5px;
+} */
+
+.ContrCardBody {
+  width: 22em;
+  max-height: 100%;
+  flex: 1 1 auto;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: flex-start;
+  padding: 1.8em;
+  position: relative;
+}
+
+.ContrCardText {
+  position: relative;
+  flex: 1;
+  overflow: hidden;
+  /* text-overflow: ellipsis; */
+  margin: 0 0 0.8em 0;
+  padding: 0;
+}
+
+.ContrTotal {
+  min-width: 8.3em;
+  flex: none;
+  align-self: flex-start;
+  margin-top: auto;
+  padding: 0.6em 1.2em;
+  font-size: 0.92em;
+  color: #404646;
+  background: none;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  /* border: 0.5px solid #777;
+    border-radius: 2px; */
+}
+
+.ContrCardText h2,
+h3,
+p {
+  margin-top: 0;
+  color: #364f6b;
+}
+
+.ContrCardText h4 {
+  color: #d07777;
+}
+
+.ContrCardText h2 {
+  margin-bottom: 0.5rem;
+}
+
+/* .ContrCardText:after {
+    position: absolute;
+    bottom: 0;
+    content: "";
+    width: 100%;
+    height: 2.8em;
+    background: linear-gradient(rgba(255, 255, 255, 0), white);
+  } */
+
+@media (max-width: 1100px) {
+  .ContrCard {
+    margin: 0.78em;
+  }
+  .ContrImage {
+    max-width: 17em;
+  }
+}
+
+@media (max-width: 870px) {
+  .ContrCard {
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 570px) {
+  .ContrCard {
+    margin: 0.75em 1.1em;
+    height: 10em;
+    flex: 1 1 auto;
+    display: flex;
+    box-shadow: 1px 3px 3px rgba(0, 10, 20, 0.06);
+  }
+  .ContrImage {
+    max-width: 40%;
+  }
+  .ContrCardText h2,
+  h3,
+  p {
+    margin-top: 0;
+    font-size: 0.9em;
+  }
+
+  .ContrTotal {
+    font-size: 0.8em;
+  }
+}

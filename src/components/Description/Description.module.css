@@ -1,0 +1,21 @@
+.Description {
+  margin: 25px auto 20px auto;
+  width: 85%;
+  align-items: center;
+  padding: 2px;
+  box-sizing: border-box;
+}
+
+.Description h1 {
+  text-align: right;
+  margin: 5px auto 15px auto;
+  width: 100%;
+  color: #364f6b;
+}
+
+.Description hr {
+  background-image: linear-gradient(to bottom right, #364f6b, #96a3b1);
+  height: 3px;
+  border: none;
+  width: 100% !important;
+}

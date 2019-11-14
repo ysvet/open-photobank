@@ -1,0 +1,102 @@
+/* * {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+} */
+
+/* body {
+    font-family: Raleway;
+    background-color: #202125;
+  } */
+
+.Heading {
+  text-align: center;
+  font-size: 2em;
+  letter-spacing: 1px;
+  padding: 40px;
+  color: white;
+}
+
+/* .ImgBox img {
+  width: 100%;
+  transition-duration: 0.3s;
+  max-width: 100%;
+  display: block;
+  overflow: hidden;
+  cursor: pointer;
+} */
+
+.ImgBox {
+  box-sizing: content-box;
+  margin: 10px;
+  height: 250px;
+  width: 350px;
+  overflow: hidden;
+
+  display: inline-block;
+  /* flex-flow: row wrap; */
+  color: white;
+  position: relative;
+  background-color: white;
+}
+
+.ImgBox img {
+  height: 250px;
+  width: 350px;
+  object-fit: cover;
+  transform: scale(1);
+  transition: transform 0.4s ease;
+}
+
+.Caption {
+  position: absolute;
+  width: 100%;
+  bottom: 15px;
+  left: 20px;
+  opacity: 1;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+  background-color: rgba(124, 124, 124, 0.8);
+}
+.Caption h2 {
+  margin-left: 3px;
+}
+
+.TransparentBox {
+  height: 250px;
+  width: 350px;
+  background-color: rgba(0, 0, 0, 0);
+  position: absolute;
+  top: 0;
+  left: 0;
+  transition: background-color 0.3s ease;
+}
+
+.ImgBox:hover img {
+  transform: scale(1.1);
+  transition-duration: 0.3s;
+  filter: grayscale(30%);
+  opacity: 0.8;
+}
+
+.ImgBox:hover .transparent-box {
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+/* .ImgBox:hover .caption {
+  transform: translateY(-20px);
+  opacity: 1;
+} */
+
+.ImgBox:hover {
+  cursor: pointer;
+}
+
+.Caption > p:nth-child(2) {
+  font-size: 0.8em;
+}
+
+.OpacityLow {
+  opacity: 0.95;
+  color: white;
+  margin-left: 3px;
+}

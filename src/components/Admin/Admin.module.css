@@ -1,0 +1,524 @@
+/* Global Styles */
+:root {
+  --primary-color: #17a2b8;
+  --dark-color: #343a40;
+  --light-color: #f4f4f4;
+  --danger-color: #dc3545;
+  --success-color: #28a745;
+  --edit-color: orange;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  /* font-family: 'Raleway', sans-serif;
+  font-size: 1rem;
+  line-height: 1.6; */
+  background-color: #fff;
+  color: #333;
+}
+
+a {
+  color: var(--primary-color);
+  text-decoration: none;
+}
+
+ul {
+  list-style: none;
+}
+
+/* img {
+  width: 100%;
+} */
+
+/* Utilities */
+.Container {
+  /* max-width: 1100px; */
+  margin: auto;
+  overflow: hidden;
+  padding: 0 2rem;
+  margin-top: 8rem;
+  margin-bottom: 5rem;
+}
+
+.DashInnerContainer {
+  display: flex;
+
+  margin: auto;
+  overflow: hidden;
+  padding: 0 1rem;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+.DashInnerInfo {
+  max-width: 1100px;
+  margin: auto;
+  overflow: hidden;
+}
+
+/* Text Styles*/
+.XLarge {
+  font-size: 4rem;
+  line-height: 1.2;
+  margin-bottom: 1rem;
+}
+
+.Large {
+  font-size: 2.5rem;
+  line-height: 1.2;
+  margin-bottom: 1rem;
+}
+
+.Lead {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.TextCenter {
+  text-align: center;
+}
+
+.TextPrimary {
+  color: var(--primary-color);
+}
+
+.TextDark {
+  color: var(--dark-color);
+}
+
+/* Padding */
+.P {
+  padding: 0.5rem;
+}
+.P1 {
+  padding: 1rem;
+}
+.P2 {
+  padding: 2rem;
+}
+.P3 {
+  padding: 3rem;
+}
+.Py {
+  padding: 0.5rem 0;
+}
+.Py1 {
+  padding: 1rem 0;
+}
+.Py2 {
+  padding: 2rem 0;
+}
+.Py3 {
+  padding: 3rem 0;
+}
+
+/* Margin */
+.M {
+  margin: 0.5rem;
+}
+.M1 {
+  margin: 1rem;
+}
+.M2 {
+  margin: 2rem;
+}
+.M3 {
+  margin: 3rem;
+}
+.My {
+  margin: 0.5rem 0;
+}
+.My1 {
+  margin: 1rem 0;
+}
+.My2 {
+  margin: 2rem 0;
+}
+.My3 {
+  margin: 3rem 0;
+}
+
+.WhiteLine {
+  background-color: white;
+  border-top: 1px solid #ddd;
+  width: 100%;
+  height: 125px;
+  position: fixed;
+  bottom: -10px;
+  left: 0px;
+  opacity: 0.9;
+}
+
+.Btn {
+  display: inline-block;
+  background: var(--light-color);
+  color: #333;
+  padding: 0.4rem 1.3rem;
+  font-size: 1rem;
+  border: none;
+  cursor: pointer;
+  margin-right: 0.5rem;
+  margin-top: 0.4rem;
+  transition: opacity 0.2s ease-in;
+  outline: none;
+}
+
+.BtnDash {
+  width: 160px;
+  display: inline-block;
+  background: var(--light-color);
+  color: #333;
+  padding: 0.4rem 1.3rem;
+  font-size: 1rem;
+  border: none;
+  cursor: pointer;
+  margin-right: 0.5rem;
+  margin-top: 0.4rem;
+  transition: opacity 0.2s ease-in;
+  outline: none;
+}
+
+.BtnLine {
+  display: inline-block;
+}
+
+.BtnStat {
+  min-width: 100px;
+  cursor: auto;
+}
+
+.Badge {
+  font-size: 0.8rem;
+  padding: 0.1rem;
+  text-align: center;
+  margin: 0.3rem;
+  background: var(--light-color);
+  color: #333;
+}
+
+.Alert {
+  padding: 0.8rem;
+  margin: 1rem 0;
+  opacity: 0.9;
+  background: var(--light-color);
+  color: #333;
+}
+
+.BtnPrimary,
+.BgPrimary,
+.BadgePrimary,
+.AlertPrimary {
+  background: var(--primary-color);
+  color: #fff;
+}
+
+.BtnLight,
+.BgLight,
+.BadgeLight,
+.AlertLight {
+  background: var(--light-color);
+  color: #333;
+}
+
+.BtnDark,
+.BgDark,
+.BadgeDark,
+.AlertDark {
+  background: var(--dark-color);
+  color: #fff;
+}
+
+.BtnDanger,
+.BgDanger,
+.BadgeDanger,
+.AlertDanger {
+  background: var(--danger-color);
+  color: #fff;
+}
+
+.BtnEdit {
+  background: var(--edit-color);
+  color: #fff;
+}
+
+.BtnSuccess,
+.BgSuccess,
+.BadgeSuccess,
+.AlertSuccess {
+  background: var(--success-color);
+  color: #fff;
+}
+
+.BtnWhite,
+.BgWhite,
+.BadgeWhite,
+.AlertWhite {
+  background: #fff;
+  color: #333;
+  border: #ccc solid 1px;
+}
+
+.Btn:hover {
+  opacity: 0.8;
+}
+
+.BtnDash:hover {
+  opacity: 0.8;
+}
+
+.BgLight,
+.BadgeLight {
+  border: #ccc solid 1px;
+}
+
+.RoundImg {
+  border-radius: 50%;
+}
+
+.Line {
+  height: 1px;
+  background: #ccc;
+  margin: 1.5rem 0;
+}
+
+/* Upload Button*/
+
+.UploadBtnWrapper {
+  position: relative;
+  overflow: hidden;
+  display: inline-block;
+  padding-top: 6px;
+}
+
+.UploadBtn {
+  border: 2px solid var(--primary-color);
+  color: white;
+  background-color: var(--primary-color);
+  padding: 8px 20px;
+  /* border-radius: 8px; */
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.UploadBtnWrapper input[type='file'] {
+  /* font-size: 100px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  opacity: 0; */
+  display: none;
+}
+
+/* Overlay */
+.DarkOverlay {
+  background-color: rgba(0, 0, 0, 0.7);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+/* Forms */
+.Form .FormGroup {
+  margin: 1.2rem 0;
+}
+
+.Form .FormText {
+  display: block;
+  margin-top: 0.3rem;
+  color: #888;
+}
+
+.Form input[type='text'],
+.Form input[type='email'],
+.Form input[type='password'],
+.Form input[type='date'],
+.Form select,
+.Form textarea {
+  display: block;
+  width: 100%;
+  padding: 0.4rem;
+  font-size: 1.2rem;
+  border: 1px solid #ccc;
+}
+
+.Form input[type='submit'],
+button {
+  font: inherit;
+}
+
+/* .Form .Social-input {
+  display: flex;
+}
+
+.Form .Social-input i {
+  padding: 0.5rem;
+  width: 4rem;
+}
+
+.Form .Social-input i.fa-twitter {
+  color: #38a1f3;
+}
+.Form .Social-input i.fa-facebook {
+  color: #3b5998;
+}
+.Form .Social-input i.fa-instagram {
+  color: #3f729b;
+}
+.Form .Social-input i.fa-youtube {
+  color: #c4302b;
+}
+.Form .Social-input i.fa-linkedin {
+  color: #0077b5;
+} */
+
+.Table th,
+.Table td {
+  padding: 1rem;
+  text-align: left;
+}
+
+.Table th {
+  background: var(--light-color);
+}
+
+.Table td:hover {
+  background: var(--light-color);
+}
+
+/* Navbar */
+.Navbar {
+  box-sizing: border-box;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.7rem 2rem;
+  position: fixed;
+  z-index: 101;
+  width: 100%;
+  top: 75px;
+  border-bottom: solid 1px var(--primary-color);
+  opacity: 0.9;
+}
+
+.Navbar ul {
+  display: flex;
+}
+
+.Navbar a {
+  color: #fff;
+  padding: 0.45rem;
+  margin: 0 0.25rem;
+}
+
+.Navbar a:hover {
+  color: var(--primary-color);
+}
+
+.Navbar .Welcome span {
+  margin-right: 0.6rem;
+}
+
+.DashNav {
+  min-width: 200px;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-flow: column;
+  /* align: left; */
+  align-items: left;
+  height: 100%;
+  border: 1px solid #eee;
+}
+
+/*  */
+
+.ThumbContainer {
+  height: 75px;
+  width: 100px;
+  overflow: hidden;
+}
+
+.Thumb {
+  width: 100px;
+  height: auto;
+}
+
+.Statistic {
+  /* margin: 10px; */
+  padding-left: 50px;
+}
+
+.Statistic a,
+h1 {
+  color: #364f6b;
+}
+
+.Statistic a:hover {
+  color: #40a4c8;
+}
+
+/* Mobile Styles */
+@media (max-width: 700px) {
+  .Container {
+    margin-top: 11rem;
+  }
+
+  .HideSm {
+    display: none;
+  }
+
+  /* Text Styles */
+  .XLarge {
+    font-size: 3rem;
+  }
+
+  .Large {
+    font-size: 2rem;
+  }
+
+  .Lead {
+    font-size: 1rem;
+  }
+
+  /* Navbar */
+  .Navbar {
+    /* box-sizing: border-box;
+    margin: 0;
+    padding: 0; */
+    display: block;
+    text-align: center;
+  }
+
+  .Navbar ul {
+    text-align: center;
+    justify-content: center;
+  }
+
+  .Navbar h1 {
+    margin-bottom: 1rem;
+  }
+
+  .Navbar .Welcome {
+    display: none;
+  }
+
+  .DashButtons a {
+    display: block;
+    width: 100%;
+    margin-bottom: 0.2rem;
+  }
+
+  /* .DashInnerContainer {
+    flex-direction: column;
+  } */
+}

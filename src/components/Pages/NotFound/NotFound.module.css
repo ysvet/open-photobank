@@ -1,0 +1,7 @@
+.Container {
+  margin: 95px auto 40px auto;
+  width: 95%;
+  align-items: center;
+  padding: 2px;
+  box-sizing: border-box;
+}

@@ -1,0 +1,20 @@
+.FooterItems {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  height: 100%;
+}
+
+.Email {
+  font-size: 0.6rem;
+  margin: 0 auto 5px auto;
+}
+
+@media (min-width: 500px) {
+  .FooterItems {
+    flex-flow: row wrap;
+  }
+}

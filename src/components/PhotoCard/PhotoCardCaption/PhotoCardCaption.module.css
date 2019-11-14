@@ -1,0 +1,19 @@
+.PhotoCardCaption {
+  text-align: center;
+  color: #364f6b;
+  padding: 5px 0 5px 0;
+}
+
+.PhotoCardCaption p {
+  text-align: center;
+  color: black;
+  padding: 3px 1px 3px 1px;
+  width: 100%;
+  /* background-color: #dee1e2; */
+  background-color: Wheat;
+}
+
+.PhotoCardCaption h3 {
+  height: 80px;
+  max-height: 80px;
+}

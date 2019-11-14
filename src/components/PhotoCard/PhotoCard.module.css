@@ -1,0 +1,54 @@
+.PhotoCard {
+  /* display: flex; */
+  /* align-items: center; */
+  /* justify-content: center; */
+  /* direction: column; */
+  /* background-color: #f5f5f5; */
+  background-color: #f5f5f5;
+  display: inline-block;
+  /* margin: 20px 5px; */
+  margin: 10px auto;
+  width: 180px;
+  height: 260px;
+  box-shadow: 0 2px 3px #ccc;
+  border: 1px solid #eee;
+  padding: 5px;
+  box-sizing: border-box;
+}
+
+.PhotoCard:hover {
+  box-shadow: 0 2px 3px #40a4c8;
+}
+
+.ThumbContainer {
+  height: 120px;
+  width: 170px;
+  overflow: hidden;
+}
+
+.CardThumb {
+  height: auto;
+  width: 170px;
+  /* width: 200px;
+    height: 120px;
+    object-fit: scale-down; */
+}
+
+@media (min-width: 600px) {
+  .PhotoCard {
+    width: 200px;
+  }
+  .ThumbContainer {
+    height: 120px;
+    width: 190px;
+    overflow: hidden;
+  }
+
+  .CardThumb {
+    height: auto;
+    width: 190px;
+    /* width: 200px;
+        height: 120px;
+        object-fit: scale-down; */
+  }
+}

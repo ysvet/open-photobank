@@ -1,0 +1,54 @@
+.Pagination {
+  margin: 15px auto 65px auto;
+  width: 90%;
+  justify-content: center;
+  padding: 2px;
+  box-sizing: border-box;
+  height: 45px;
+  display: flex;
+  position: fixed;
+  bottom: -10px;
+  left: 0px;
+  width: 100%;
+  /* background-color: white; */
+}
+.Pagination span {
+  background-color: white;
+  height: auto;
+  cursor: pointer;
+  color: black;
+  width: auto;
+  flex-flow: row;
+  padding: 10px 16px 10px 16px;
+  text-decoration: none;
+  transition: 0.2s ease-in;
+  border: 1px solid #ddd;
+}
+
+.Pagination a {
+  outline: none;
+}
+
+.Pagination span.active {
+  background-color: #40a4c8;
+  color: white;
+  border: 1px solid #40a4c8;
+}
+
+/* 
+.WhiteLine {
+  background-color: white;
+  border-top: 1px solid #ddd;
+  width: 100%;
+  height: 230px;
+  display: flex;
+  position: fixed;
+  z-index: -1;
+  align-content: center;
+} */
+
+/* @media (max-width: 350px) {
+  .Pagination span {
+    flex-flow: column;
+  }
+} */

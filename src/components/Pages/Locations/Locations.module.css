@@ -1,0 +1,25 @@
+.Locations {
+  max-width: 1600px;
+  width: 84%;
+  display: flex;
+  flex-flow: column;
+  align-content: flex-start;
+  padding: 0.9em;
+  margin: 0px auto 0px auto;
+}
+
+.Locations a {
+  color: #364f6b;
+}
+
+.Locations a:hover {
+  color: #40a4c8;
+}
+
+.Container {
+  margin: 95px auto 40px auto;
+  width: 95%;
+  align-items: center;
+  padding: 2px;
+  box-sizing: border-box;
+}

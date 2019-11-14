@@ -1,0 +1,25 @@
+.PhotoDownload {
+  display: flex;
+  /* display: inline-block; */
+  flex-flow: row;
+  margin: 5px auto 10px auto;
+  width: 100%;
+  /* padding: 15px; */
+  box-sizing: border-box;
+  align-items: center;
+  justify-content: center;
+}
+
+.IconPhotoDownload {
+  /* display: block; */
+  color: #00b4cc;
+  display: flex;
+  align-items: center;
+}
+
+.PhotoDownload h3 {
+  /* display: block; */
+  padding: 3px;
+  display: flex;
+  align-items: center;
+}

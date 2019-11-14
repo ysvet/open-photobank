@@ -1,0 +1,27 @@
+{
+  "name": "photobank",
+  "version": "1.0.0",
+  "description": "free photobank",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server"
+  },
+  "author": "Iurie Svet",
+  "license": "ISC",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "config": "^3.2.2",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "express-validator": "^6.1.1",
+    "fs-extra": "^8.1.0",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.6.9",
+    "mongoose-auto-increment": "^5.0.1",
+    "multer": "^1.4.2",
+    "sharp": "^0.23.2"
+  },
+  "devDependencies": {
+    "nodemon": "^1.19.1"
+  }
+}

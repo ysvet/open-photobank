@@ -1,0 +1,24 @@
+.Contributors {
+  max-width: 1600px;
+  display: flex;
+  flex-flow: row wrap;
+  align-content: flex-start;
+  padding: 0.9em;
+  margin: 0 auto 0 auto;
+  width: 87%;
+}
+
+.BlockTitle {
+  text-align: left;
+  width: 80%;
+  color: #364f6b;
+  /* display: block; */
+}
+
+.Container {
+  margin: 95px auto 40px auto;
+  width: 95%;
+  align-items: center;
+  padding: 2px;
+  box-sizing: border-box;
+}

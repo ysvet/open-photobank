@@ -1,0 +1,27 @@
+.NavigationItems {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  height: 100%;
+}
+
+@media (min-width: 699px) and (max-width: 1050px) {
+  .HideSm {
+    display: none;
+  }
+  .NavigationItems {
+    font-size: 1.7rem;
+  }
+}
+
+@media (min-width: 699px) {
+  .NavigationItems {
+    flex-flow: row;
+  }
+  /* .HideSm {
+    display: none;
+  } */
+}

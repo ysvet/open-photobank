@@ -1,0 +1,3 @@
+var Configs = {
+  regIsOpen: true
+};

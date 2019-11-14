@@ -1,0 +1,72 @@
+.ActionSwitch {
+  margin: 5px 0;
+  box-sizing: border-box;
+  display: block;
+  width: 100%;
+  font-size: 1rem;
+}
+
+.ShowLangButton {
+  color: white;
+  /* background-color: #96A3B1;  */
+  background-color: #b6b8b9;
+  /* background-color: #96a3b1; */
+  border: none;
+  width: 80px;
+  box-sizing: border-box;
+  display: block;
+  cursor: pointer;
+  margin: 2px;
+  outline: none;
+}
+
+.RedButton {
+  color: white;
+  background-color: tomato;
+  /* background-color: #b6b8b9; */
+  /* background-color: #96a3b1; */
+  border: none;
+  width: 100%;
+  box-sizing: border-box;
+  display: block;
+  cursor: pointer;
+  margin: 2px;
+  outline: none;
+  padding: 7px;
+}
+
+.GreenButton {
+  color: white;
+  background-color: forestgreen;
+  /* background-color: #b6b8b9; */
+  /* background-color: #96a3b1; */
+  border: none;
+  width: 100%;
+  box-sizing: border-box;
+  display: block;
+  cursor: pointer;
+  margin: 2px;
+  outline: none;
+  padding: 7px;
+}
+
+.ShowLangButtonActive {
+  color: white;
+  background-color: #9cb1c7;
+  border: none;
+  width: 80px;
+  box-sizing: border-box;
+  display: block;
+  cursor: pointer;
+  margin: 2px;
+}
+
+.ShowLangButtonActive:focus {
+  outline: 0;
+}
+
+.ShowLangButton:hover,
+.ShowLangButton:active,
+.ShowLangButton.active {
+  color: #40a4c8;
+}

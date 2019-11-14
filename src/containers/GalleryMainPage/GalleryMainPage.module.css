@@ -1,0 +1,35 @@
+.Container {
+  margin: 85px auto 60px auto;
+  width: 95%;
+  align-items: center;
+  padding: 2px;
+  box-sizing: border-box;
+}
+
+.GalleryImage {
+  width: 100%;
+  padding: 20px;
+  display: flex;
+  /* flex-direction: row; */
+  flex-flow: row wrap;
+  /* flex-wrap: wrap; */
+  justify-content: center;
+  /* align-content: flex-start; */
+}
+/* .CatCards {
+  display: block;
+} */
+
+.ContainerAll {
+  width: fit-content;
+  margin: 20px auto;
+  height: auto;
+}
+
+.Container hr {
+  background-image: linear-gradient(to bottom right, #364f6b, #96a3b1);
+  height: 3px;
+  border: none;
+  margin: 10px auto 10px auto;
+  width: 85%;
+}
