@@ -8,7 +8,7 @@ Upload, add/edit image info in Dashboard.
 
 Run npm install in root and api folders.<br />
 Run with 'npm run dev'.<br />
-Attention for Windows usage - one of the packages (sharp) won't work as expected. It will create another folder with image tiles in its subfolder while uploading an image.
+Attention for Windows users - one of the packages (sharp) won't work as expected. It will create another folder with image tiles in its subfolder while uploading an image.
 
 ***********************************
 Dashboard - /adm <br />
