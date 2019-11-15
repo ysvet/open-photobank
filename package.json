@@ -1,5 +1,9 @@
 {
-  "name": "photobank",
+  "name": "open-photobank",
+  "author": {
+    "name": "Iurie Svet",
+    "email": "iurie.shvets@gmail.com"
+  },
   "version": "0.1.0",
   "private": true,
   "dependencies": {

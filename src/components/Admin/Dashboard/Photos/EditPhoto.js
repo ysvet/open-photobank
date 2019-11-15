@@ -200,6 +200,7 @@ const EditPhoto = ({
 
                 <div className={styles.FormGroup}>
                   <textarea
+                    rows='10'
                     placeholder='* Photo description'
                     name='description'
                     value={description}
@@ -332,15 +333,12 @@ const EditPhoto = ({
                     onChange={e => onChange(e)}
                   >
                     <option value='0'>* Select license</option>
-                    <option value='Public Domain'>
-                      Использование без ограничений
-                    </option>
+                    <option value='Public Domain'>Public Domain</option>
                     <option value='Attribution (CC BY)'>
-                      Использование без ограничений с указанием источника
+                      Attribution (CC BY)
                     </option>
                     <option value='Attribution-NonCommercial (CC BY-NC)'>
-                      Использование без ограничений (но не в коммерческих целях)
-                      с указанием источника
+                      Attribution-NonCommercial (CC BY-NC)
                     </option>
                   </select>
                   <small>License</small>
@@ -388,15 +386,12 @@ const mapStateToProps = state => ({
   albums: state.album.albums,
   periods: state.period.periods
 });
-export default connect(
-  mapStateToProps,
-  {
-    editPhoto,
-    getPhotoById,
-    getAllLocations,
-    getAllCategories,
-    getAllContributors,
-    getAllAlbumsNoPage,
-    getAllPeriods
-  }
-)(withRouter(EditPhoto));
+export default connect(mapStateToProps, {
+  editPhoto,
+  getPhotoById,
+  getAllLocations,
+  getAllCategories,
+  getAllContributors,
+  getAllAlbumsNoPage,
+  getAllPeriods
+})(withRouter(EditPhoto));

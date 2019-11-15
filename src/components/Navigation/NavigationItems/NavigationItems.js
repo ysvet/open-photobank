@@ -32,15 +32,15 @@ const navigationItems = () => {
         <span className={styles.HideSm}> Locations</span>
       </NavigationItem>
       <NavigationItem link='/albums'>
-        <FontAwesomeIcon icon={faImages} />
+        <FontAwesomeIcon icon={faImages} />{' '}
         <span className={styles.HideSm}> Albums</span>
       </NavigationItem>
       <NavigationItem link='/time-periods'>
-        <FontAwesomeIcon icon={faHistory} />
+        <FontAwesomeIcon icon={faHistory} />{' '}
         <span className={styles.HideSm}>Periods</span>
       </NavigationItem>
       <NavigationItem link='/about'>
-        <FontAwesomeIcon icon={faInfo} />
+        <FontAwesomeIcon icon={faInfo} />{' '}
         <span className={styles.HideSm}> About</span>
       </NavigationItem>
       <NavigationItem link='/search'>

@@ -131,7 +131,7 @@ router.get('/:location_name/name', async (req, res) => {
 //@desc Get an location with it's photos by locationID with pagination
 //@access Public
 
-const ITEMS_PER_PAGE = 2;
+const ITEMS_PER_PAGE = 40;
 
 router.get('/:location_id/photos', async (req, res) => {
   try {
@@ -166,6 +166,7 @@ router.get('/:location_id/photos', async (req, res) => {
       locationPhotos: locationPhotos,
       location: location,
       totalPhotos: totalPhotos,
+      itemsPerPage: ITEMS_PER_PAGE,
       currentPage: currentPage,
       hasNextPage: hasNextPage,
       nextPage: nextPage,

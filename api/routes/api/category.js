@@ -82,11 +82,40 @@ router.get('/:category_id', async (req, res) => {
   }
 });
 
+// //@route GET api/category/:category_id/photos
+// //@desc Get a category with it's photos by categoryID
+// //@access Public
+
+// router.get('/:category_id/photos', async (req, res) => {
+//   try {
+//     const category = await Category.findOne({
+//       categoryID: req.params.category_id
+//     });
+
+//     if (!category) return res.status(400).json({ msg: 'Category not found' });
+
+//     const categoryPhotos = await Photo.find({
+//       $or: [
+//         { categoryID: req.params.category_id },
+//         { categoryID2: req.params.category_id },
+//         { categoryID3: req.params.category_id }
+//       ]
+//     });
+//     res.json({ categoryPhotos: categoryPhotos, category: category });
+//   } catch (err) {
+//     console.error(err.message);
+//     if (err.kind === 'ObjectId') {
+//       return res.status(400).json({ msg: 'Category not found' });
+//     }
+//     res.status(500).send('Server error');
+//   }
+// });
+
 //@route GET api/category/:category_id/photos
 //@desc Get a category with it's photos by categoryID with pagination
 //@access Public
 
-const ITEMS_PER_PAGE = 20;
+const ITEMS_PER_PAGE = 40;
 router.get('/:category_id/photos', async (req, res) => {
   try {
     const category = await Category.findOne({
@@ -127,6 +156,7 @@ router.get('/:category_id/photos', async (req, res) => {
       categoryPhotos: categoryPhotos,
       category: category,
       totalPhotos: totalPhotos,
+      itemsPerPage: ITEMS_PER_PAGE,
       currentPage: currentPage,
       hasNextPage: hasNextPage,
       nextPage: nextPage,

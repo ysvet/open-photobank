@@ -25,6 +25,7 @@ const Albums = ({
     lastPage,
     hasPreviousPage,
     previousPage,
+    albumsPerPage,
     loading
   },
   location
@@ -36,6 +37,7 @@ const Albums = ({
     nextPage: null,
     lastPage: null,
     hasPreviousPage: null,
+    albumsPerPage: 0,
     previousPage: null
   });
 
@@ -74,17 +76,22 @@ const Albums = ({
             <div className={styles.Albums}>{photoAlbumsCards}</div>
           </Fragment>
         )}
-        <div className={styles.WhiteLine}>{''}</div>
-        <Pagination
-          totalPhotos={totalAlbums}
-          currentPage={currentPage}
-          hasNextPage={hasNextPage}
-          nextPage={nextPage}
-          lastPage={lastPage}
-          hasPreviousPage={hasPreviousPage}
-          previousPage={previousPage}
-          getPhotosHadler={getPhotosHadler}
-        />
+        {totalAlbums <= albumsPerPage ? null : (
+          <Fragment>
+            {' '}
+            <div className={styles.WhiteLine}>{''}</div>
+            <Pagination
+              totalPhotos={totalAlbums}
+              currentPage={currentPage}
+              hasNextPage={hasNextPage}
+              nextPage={nextPage}
+              lastPage={lastPage}
+              hasPreviousPage={hasPreviousPage}
+              previousPage={previousPage}
+              getPhotosHadler={getPhotosHadler}
+            />
+          </Fragment>
+        )}
       </div>
     </Fragment>
   );

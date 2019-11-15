@@ -18,6 +18,7 @@ const initialState = {
   hasPreviousPage: null,
   lastPage: 0,
   previousPage: 1,
+  itemsPerPage: 0,
   loading: true,
   error: {}
 };
@@ -54,6 +55,7 @@ const period = (state = initialState, action) => {
         hasPreviousPage: payload.hasPreviousPage,
         lastPage: payload.lastPage,
         previousPage: payload.previousPage,
+        itemsPerPage: payload.itemsPerPage,
         loading: false
       };
     case DELETE_PERIOD:

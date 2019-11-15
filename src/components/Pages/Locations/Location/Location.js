@@ -24,6 +24,7 @@ const Location = ({
     nextPage,
     lastPage,
     hasPreviousPage,
+    itemsPerPage,
     previousPage
   },
   photos,
@@ -44,7 +45,8 @@ const Location = ({
     nextPage: null,
     lastPage: null,
     hasPreviousPage: null,
-    previousPage: null
+    previousPage: null,
+    itemsPerPage: 0
   });
 
   const UrlQueryStrings = location.search;
@@ -102,17 +104,21 @@ const Location = ({
             <div className={styles.Location}>{photoCards}</div>
           </Fragment>
         )}
-        <div className={styles.WhiteLine}>{''}</div>
-        <Pagination
-          totalPhotos={totalPhotos}
-          currentPage={currentPage}
-          hasNextPage={hasNextPage}
-          nextPage={nextPage}
-          lastPage={lastPage}
-          hasPreviousPage={hasPreviousPage}
-          previousPage={previousPage}
-          getPhotosHadler={getPhotosHadler}
-        />
+        {totalPhotos <= itemsPerPage ? null : (
+          <Fragment>
+            <div className={styles.WhiteLine}>{''}</div>
+            <Pagination
+              totalPhotos={totalPhotos}
+              currentPage={currentPage}
+              hasNextPage={hasNextPage}
+              nextPage={nextPage}
+              lastPage={lastPage}
+              hasPreviousPage={hasPreviousPage}
+              previousPage={previousPage}
+              getPhotosHadler={getPhotosHadler}
+            />
+          </Fragment>
+        )}
       </div>
     </Fragment>
   );

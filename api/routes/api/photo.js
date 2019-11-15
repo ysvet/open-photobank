@@ -28,7 +28,10 @@ const storage = multer.diskStorage({
     cb(null, uploadPath);
   },
   filename: (req, file, cb) => {
-    cb(null, new Date().toISOString().replace(/:/g, '-') + '_photobank');
+    cb(
+      null,
+      new Date().toISOString().replace(/:/g, '-') + '_open-photobank.jpg'
+    );
   }
 });
 
@@ -74,6 +77,7 @@ router.post('/upload', auth, upload.single('file'), async (req, res) => {
 
   const imgUrl = req.file.path;
   const photoFileName = req.file.filename;
+  const imgSize = req.file.size;
 
   console.log(req.file, 'REQ FILE');
 
@@ -109,6 +113,7 @@ router.post('/upload', auth, upload.single('file'), async (req, res) => {
 
   photoFields.imgUrl = imgUrl;
   photoFields.photoFileName = photoFileName;
+  photoFields.imgSize = imgSize;
   if (albumID) photoFields.albumName = albumObject.albumName;
   photoFields.contributorName = contributorObject.name;
   photoFields.contributorWeb = contributorObject.web;
@@ -163,7 +168,7 @@ router.post('/upload', auth, upload.single('file'), async (req, res) => {
 
     //create tiles
     await sharp(req.file.path)
-      .jpeg({ quality: 90 })
+      .jpeg({ quality: 80 })
       .tile({
         size: 256
       })
@@ -304,10 +309,10 @@ router.post('/', auth, async (req, res) => {
 // });
 
 //@route GET api/photo
-//@desc Get all photos with pagination for latest component
+//@desc Get all photos with pagination for latest component and photo component in dashboard
 //@access Public
 
-const ITEMS_PER_PAGE = 7;
+const ITEMS_PER_PAGE = 40;
 router.get('/', async (req, res) => {
   try {
     const page = +req.query.page || 1;
@@ -372,6 +377,9 @@ router.get('/', async (req, res) => {
     res.json(photo);
   } catch (err) {
     console.error(err.message);
+    // if (err.kind === 'ObjectId') {
+    //   return res.status(400).json({ msg: 'Photo not found' });
+    // }
     res.status(500).send('Server error');
   }
 });

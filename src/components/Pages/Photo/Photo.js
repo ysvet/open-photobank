@@ -17,7 +17,6 @@ import { getPhotoById } from '../../../store/actions/photo';
 const Photo = ({ getPhotoById, photo, loading, match }) => {
   const [photoData, setPhotoData] = useState({
     photoID: match.params.id,
-    imgUrl: '',
     photoFileName: '',
     title: '',
     description: '',
@@ -39,12 +38,12 @@ const Photo = ({ getPhotoById, photo, loading, match }) => {
     author: '',
     periodID: '',
     periodName: '',
-    license: ''
+    license: '',
+    imgSize: ''
   });
 
   const {
     photoID,
-    imgUrl,
     photoFileName,
     title,
     description,
@@ -65,7 +64,8 @@ const Photo = ({ getPhotoById, photo, loading, match }) => {
     author,
     periodID,
     periodName,
-    license
+    license,
+    imgSize
   } = photoData;
 
   const getPhotoByIdRef = useRef();
@@ -80,7 +80,6 @@ const Photo = ({ getPhotoById, photo, loading, match }) => {
     if (loading === false && photo !== null) {
       const {
         photoID,
-        imgUrl,
         photoFileName,
         title,
         description,
@@ -101,12 +100,12 @@ const Photo = ({ getPhotoById, photo, loading, match }) => {
         author,
         periodID,
         periodName,
-        license
+        license,
+        imgSize
       } = photo;
 
       setPhotoData({
         photoID,
-        imgUrl,
         photoFileName,
         title,
         description,
@@ -127,7 +126,8 @@ const Photo = ({ getPhotoById, photo, loading, match }) => {
         author,
         periodID,
         periodName,
-        license
+        license,
+        imgSize
       });
     }
   }, [loading, photo]);
@@ -140,6 +140,17 @@ const Photo = ({ getPhotoById, photo, loading, match }) => {
     showPhoto = null;
   }
 
+  //function for converting fetched image size in bytes to KB and MB
+  const formatBytes = (a, b) => {
+    if (0 === a) return '0 Bytes';
+    const c = 1024,
+      d = b || 2,
+      e = ['Bytes', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'],
+      f = Math.floor(Math.log(a) / Math.log(c));
+    return parseFloat((a / Math.pow(c, f)).toFixed(d)) + ' ' + e[f];
+  };
+
+  const photoSize = formatBytes(imgSize, 2);
   let showLicense = '';
 
   if (license === 'Public Domain') {
@@ -277,7 +288,7 @@ const Photo = ({ getPhotoById, photo, loading, match }) => {
 
             <div className={styles.DownBlocks}>
               <a
-                href={`/${imgUrl.slice(7)}`}
+                href={`../uploads/${photoFileName}`}
                 download={`openphotobank-${title.replace(
                   /"/g,
                   ''
@@ -287,7 +298,7 @@ const Photo = ({ getPhotoById, photo, loading, match }) => {
                 target='_self'
               >
                 <div className={styles.DownBlock}>
-                  <PhotoDownload />
+                  <PhotoDownload photoSize={photoSize} />
                 </div>
               </a>
               <div className={styles.DownBlockLicense}>

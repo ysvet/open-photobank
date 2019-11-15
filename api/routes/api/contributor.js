@@ -84,11 +84,40 @@ router.get('/:contributor_id', async (req, res) => {
   }
 });
 
+// //@route GET api/contributor/:contributor_id/photos
+// //@desc Get an contributor with it's photos by contributorID
+// //@access Public
+
+// router.get('/:contributor_id/photos', async (req, res) => {
+//   try {
+//     const contributor = await Contributor.findOne({
+//       contributorID: req.params.contributor_id
+//     });
+
+//     if (!contributor)
+//       return res.status(400).json({ msg: 'Contributor not found' });
+
+//     const contributorPhotos = await Photo.find({
+//       contributorID: req.params.contributor_id
+//     });
+//     res.json({
+//       contributorPhotos: contributorPhotos,
+//       contributor: contributor
+//     });
+//   } catch (err) {
+//     console.error(err.message);
+//     if (err.kind === 'ContributorID') {
+//       return res.status(400).json({ msg: 'Contributor not found' });
+//     }
+//     res.status(500).send('Server error');
+//   }
+// });
+
 //@route GET api/contributor/:contributor_id/photos
 //@desc Get an contributor with it's photos by contributorID with pagination
 //@access Public
 
-const ITEMS_PER_PAGE = 2;
+const ITEMS_PER_PAGE = 40;
 
 router.get('/:contributor_id/photos', async (req, res) => {
   try {
@@ -121,6 +150,7 @@ router.get('/:contributor_id/photos', async (req, res) => {
       .limit(ITEMS_PER_PAGE);
 
     res.json({
+      itemsPerPage: ITEMS_PER_PAGE,
       contributorPhotos: contributorPhotos,
       contributor: contributor,
       totalPhotos: totalPhotos,

@@ -23,13 +23,13 @@ const Period = ({
     lastPage,
     hasPreviousPage,
     previousPage,
+    itemsPerPage,
     loading
   },
   photos,
   getPeriodPhotos,
   match,
-  location,
-  lang
+  location
 }) => {
   const [formData, setFormData] = useState({
     periodID: match.params.id,
@@ -45,7 +45,8 @@ const Period = ({
     nextPage: null,
     lastPage: null,
     hasPreviousPage: null,
-    previousPage: null
+    previousPage: null,
+    itemsPerPage: 0
   });
 
   const UrlQueryStrings = location.search;
@@ -103,18 +104,20 @@ const Period = ({
             <div className={styles.Period}>{photoCards}</div>
           </Fragment>
         )}
-        <div className={styles.WhiteLine}>{''}</div>
-        {photoCards.length !== 0 && (
-          <Pagination
-            totalPhotos={totalPhotos}
-            currentPage={currentPage}
-            hasNextPage={hasNextPage}
-            nextPage={nextPage}
-            lastPage={lastPage}
-            hasPreviousPage={hasPreviousPage}
-            previousPage={previousPage}
-            getPhotosHadler={getPhotosHadler}
-          />
+        {totalPhotos <= itemsPerPage ? null : (
+          <Fragment>
+            <div className={styles.WhiteLine}>{''}</div>
+            <Pagination
+              totalPhotos={totalPhotos}
+              currentPage={currentPage}
+              hasNextPage={hasNextPage}
+              nextPage={nextPage}
+              lastPage={lastPage}
+              hasPreviousPage={hasPreviousPage}
+              previousPage={previousPage}
+              getPhotosHadler={getPhotosHadler}
+            />
+          </Fragment>
         )}
       </div>
     </Fragment>

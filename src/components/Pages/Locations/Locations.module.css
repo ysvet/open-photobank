@@ -23,3 +23,22 @@
   padding: 2px;
   box-sizing: border-box;
 }
+
+.SearchBar {
+  width: 80%;
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 60px auto 25px auto;
+  border: 3px solid #00b4cc;
+  padding: 5px;
+  height: 36px;
+  border-radius: 5px;
+  outline: none;
+  box-sizing: border-box;
+}
+
+.SearchTerm:focus {
+  color: #00b4cc;
+}

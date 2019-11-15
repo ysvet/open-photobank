@@ -67,7 +67,7 @@ router.get('/all', async (req, res) => {
 //@desc Get all albums with pagination
 //@access Public
 
-const ALBUMS_PER_PAGE = 20;
+const ALBUMS_PER_PAGE = 40;
 
 router.get('/', async (req, res) => {
   try {
@@ -90,6 +90,7 @@ router.get('/', async (req, res) => {
 
     res.json({
       albums: albums,
+      albumsPerPage: ALBUMS_PER_PAGE,
       totalAlbums: totalAlbums,
       currentPage: currentPage,
       hasNextPage: hasNextPage,
@@ -153,7 +154,7 @@ router.get('/:album_id', async (req, res) => {
 //@desc Get an album with it's photos by albumID with pagination
 //@access Public
 
-const ITEMS_PER_PAGE = 30;
+const ITEMS_PER_PAGE = 40;
 
 router.get('/:album_id/photos', async (req, res) => {
   try {
@@ -188,6 +189,7 @@ router.get('/:album_id/photos', async (req, res) => {
       albumPhotos: albumPhotos,
       album: album,
       totalPhotos: totalPhotos,
+      itemsPerPage: ITEMS_PER_PAGE,
       currentPage: currentPage,
       hasNextPage: hasNextPage,
       nextPage: nextPage,

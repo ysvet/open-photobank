@@ -78,6 +78,9 @@ const PhotoSchema = new mongoose.Schema({
   date: {
     type: Date,
     default: Date.now
+  },
+  imgSize: {
+    type: Number
   }
 });
 

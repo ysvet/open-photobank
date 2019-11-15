@@ -108,7 +108,7 @@ router.get('/:period_id', async (req, res) => {
 //@desc Get a period with it's photos by periodID with pagination
 //@access Public
 
-const ITEMS_PER_PAGE = 2;
+const ITEMS_PER_PAGE = 40;
 
 router.get('/:period_id/photos', async (req, res) => {
   try {
@@ -143,6 +143,7 @@ router.get('/:period_id/photos', async (req, res) => {
       periodPhotos: periodPhotos,
       period: period,
       totalPhotos: totalPhotos,
+      itemsPerPage: ITEMS_PER_PAGE,
       currentPage: currentPage,
       hasNextPage: hasNextPage,
       nextPage: nextPage,

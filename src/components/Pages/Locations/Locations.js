@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect } from 'react';
+import React, { Fragment, useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
@@ -15,7 +15,19 @@ const Locations = ({ getAllLocations, location: { locations, loading } }) => {
     getAllLocations();
   }, [getAllLocations]);
 
-  let photoLocation = locations.map(location => (
+  const [searchTerm, setSearchTerm] = useState('');
+
+  const handleChange = event => {
+    setSearchTerm(event.target.value);
+  };
+
+  const results = !searchTerm
+    ? locations
+    : locations.filter(loc =>
+        loc.locationName.toLowerCase().includes(searchTerm.toLocaleLowerCase())
+      );
+
+  let photoLocation = results.map(location => (
     <li key={location.locationID}>
       <h2>
         <Link to={{ pathname: `/locations/${location.locationID}` }}>
@@ -25,6 +37,17 @@ const Locations = ({ getAllLocations, location: { locations, loading } }) => {
     </li>
   ));
 
+  let searchbox = (
+    <input
+      type='text'
+      placeholder='Search places'
+      spellCheck='false'
+      value={searchTerm}
+      onChange={handleChange}
+      className={styles.SearchBar}
+    />
+  );
+
   const locationsPage = (
     <Fragment>
       <Head title='Locations' content='Locations' />
@@ -32,6 +55,7 @@ const Locations = ({ getAllLocations, location: { locations, loading } }) => {
         <Fragment>
           <TitleBlock pageTitle={'Locations'} />
         </Fragment>
+        <Fragment>{searchbox}</Fragment>
         <div>
           <div className={styles.Locations}>{photoLocation}</div>
         </div>
