@@ -12,5 +12,5 @@ Attention for Windows usage - one of the packages (sharp) won't work as expected
 
 ***********************************
 Dashboard - /adm <br />
-Closing/open registration is done in config file (public/config.js). In real case usage you will probably want co close registration after registering onr or two admin users.<br />
+Closing/open registration is done in config file (public/config.js). In real case usage you will probably want co close registration after registering one or two admin users.<br />
 Connection data to your db - in api/config/default.json
