@@ -100,7 +100,7 @@ const SliderBlock = ({
 
   //Latest PhotoBlock
 
-  const photoThumbLatest = photoThumb.reverse().slice(0, 10);
+  const photoThumbLatest = photoThumb.slice(0, 10);
 
   //Random PhotoBlock
 
@@ -165,7 +165,4 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(
-  mapStateToProps,
-  { getAllPhotos }
-)(SliderBlock);
+export default connect(mapStateToProps, { getAllPhotos })(SliderBlock);
