@@ -2,6 +2,7 @@ import React, { Fragment, useEffect, useState, useRef } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import ReactHtmlParser from 'react-html-parser';
 
 import styles from './Photo.module.css';
 
@@ -170,12 +171,18 @@ const Photo = ({ getPhotoById, photo, loading, match }) => {
   ) : (
     <Fragment>
       <Head title={title} content={description} />
-      <MiniSiteMap
-        catLink={`/categories/${categoryID}`}
-        catName={categoryName}
-        contrLink={`/contributors/${contributorID}`}
-        contrName={contributorName}
-      />
+      {+match.params.id === +photoID && (
+        <MiniSiteMap
+          catLink={`/categories/${categoryID}`}
+          catName={categoryName}
+          locLink={`/locations/${locationID}`}
+          locName={locationName}
+          albLink={`/albums/${albumID}`}
+          albName={albumName}
+          perLink={`/time-periods/${periodID}`}
+          perName={periodName}
+        />
+      )}
       <div>
         <div className={styles.Caption}>
           {+match.params.id === +photoID && <h1>{title}</h1>}
@@ -283,7 +290,9 @@ const Photo = ({ getPhotoById, photo, loading, match }) => {
             </div>
 
             <div className={styles.PhotoDescriptionDescr}>
-              {description ? <span> {description} </span> : null}
+              {description ? (
+                <Fragment> {ReactHtmlParser(description)}</Fragment>
+              ) : null}
             </div>
 
             <div className={styles.DownBlocks}>

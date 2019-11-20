@@ -1,55 +1,84 @@
-import React, { Component } from 'react';
+import React from 'react';
 
 import { NavLink } from 'react-router-dom';
 
 import styles from './MiniSiteMap.module.css';
 
-class MiniSiteMap extends Component {
-  render() {
-    const catalogItemCategory = (
-      <div className={styles.MapElement}>
-        <span>
-          <NavLink to='/categories' exact={this.props.exact}>
-            Categories {`>`}
-          </NavLink>
-        </span>
-        <span>
-          <NavLink to={this.props.catLink} exact={this.props.exact}>
-            {' '}
-            {this.props.catName}
-          </NavLink>
-        </span>
-      </div>
-    );
+const MiniSiteMap = ({
+  catLink,
+  catName,
+  perLink,
+  perName,
+  locLink,
+  locName,
+  albLink,
+  albName,
+  exact
+}) => {
+  let catalogItemCategory = null;
+  let catalogItemLocation = null;
+  let catalogItemPeriod = null;
+  let catalogItemAlbum = null;
 
-    const catalogItemContributor = (
-      <div className={styles.MapElement}>
-        <span>
-          <NavLink to='/contributors' exact={this.props.exact}>
-            Contributors {`>`}
-          </NavLink>
-        </span>
-        <span>
-          <NavLink to={this.props.contrLink} exact={this.props.exact}>
-            {' '}
-            {this.props.contrName}
-          </NavLink>
-        </span>
-      </div>
-    );
+  let showAlbName = null;
 
-    const separator = <div className={styles.Separator}> | </div>;
+  albName && albName.length > 18
+    ? (showAlbName = albName.slice(0, 18) + '...')
+    : (showAlbName = albName);
 
-    return (
-      <div className={styles.MiniSiteMap}>
-        {this.props.catLink ? <div> {catalogItemCategory} </div> : null}
-        {this.props.catLink && this.props.contrLink ? (
-          <div> {separator} </div>
-        ) : null}
-        {this.props.contrLink ? <div> {catalogItemContributor}</div> : null}
-      </div>
-    );
-  }
-}
+  catalogItemCategory = (
+    <div className={styles.MapElement}>
+      <span>
+        <NavLink to={catLink} exact={exact}>
+          {' '}
+          {catName}
+        </NavLink>
+      </span>
+    </div>
+  );
+
+  catalogItemLocation = (
+    <div className={styles.MapElement}>
+      <span>
+        <NavLink to={locLink} exact={exact}>
+          {' '}
+          {locName}
+        </NavLink>
+      </span>
+    </div>
+  );
+
+  catalogItemAlbum = (
+    <div className={styles.MapElement}>
+      <span>
+        <NavLink to={albLink} exact={exact}>
+          {' '}
+          {showAlbName}
+        </NavLink>
+      </span>
+    </div>
+  );
+
+  catalogItemPeriod = (
+    <div className={styles.MapElement}>
+      <span>
+        <NavLink to={perLink} exact={exact}>
+          {' '}
+          {perName}
+        </NavLink>
+      </span>
+    </div>
+  );
+
+  return (
+    <div className={styles.MiniSiteMap}>
+      {catLink ? <span> {catalogItemCategory} </span> : null}
+      {locLink ? <span> {catalogItemLocation} </span> : null}
+      {perLink ? <span> {catalogItemPeriod} </span> : null}
+      {albLink ? <span> {catalogItemAlbum} </span> : null}
+    </div>
+  );
+};
+
 
 export default MiniSiteMap;
