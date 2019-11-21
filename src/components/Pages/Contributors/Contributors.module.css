@@ -22,3 +22,14 @@
   padding: 2px;
   box-sizing: border-box;
 }
+
+@media (max-width: 699px) {
+  .Contributors {
+    flex-flow: column nowrap;
+    padding: 0;
+  }
+
+  .Container {
+    margin: 95px auto 60px auto;
+  }
+}
