@@ -11,6 +11,7 @@ import Head from '../../../Head/Head';
 import Spinner from '../../../UI/Spinner/Spinner';
 import TitleBlock from '../../../TitleBlock/TitleBlock';
 import PhotoCard from '../../../PhotoCard/PhotoCard';
+import AlbumInfo from '../AlbumInfo/AlbumInfo';
 import styles from './Album.module.css';
 import { getAlbumPhotos } from '../../../../store/actions/album';
 
@@ -36,7 +37,7 @@ const Album = ({
     albumID: match.params.id,
     albumName: ''
   });
-  const { albumName, albumID } = formData;
+  const { albumName, albumID, albumInfo } = formData;
 
   const [photosData, setPhotosData] = useState({
     totalPhotos: 0,
@@ -61,10 +62,11 @@ const Album = ({
   useEffect(() => {
     //only if loading is false and still mounted
     if (loading === false && isMounted.current && album !== null) {
-      const { albumID, albumName } = album;
+      const { albumID, albumName, albumInfo } = album;
       setFormData({
         albumID,
-        albumName
+        albumName,
+        albumInfo
       });
       setPhotosData(photosData);
     }
@@ -98,6 +100,8 @@ const Album = ({
         {(loading || albumID === match.params.id) && <Spinner />}
         {(!loading || albumID === match.params.id) && (
           <Fragment>
+            <div>{albumInfo && <AlbumInfo albumInfo={albumInfo} />}</div>
+
             <div className={styles.Album}>{photoCards}</div>
           </Fragment>
         )}

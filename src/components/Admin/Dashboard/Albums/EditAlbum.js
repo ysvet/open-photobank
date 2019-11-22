@@ -18,44 +18,25 @@ const EditAlbum = ({
 }) => {
   const [formData, setFormData] = useState({
     albumID: match.params.id,
-    albumName: ''
+    albumName: '',
+    albumInfo: ''
   });
 
-  const { albumName, albumID } = formData;
+  const { albumName, albumID, albumInfo } = formData;
   //only get album by id when id changed
   useEffect(() => {
     getAlbumById(albumID);
   }, [getAlbumById]);
 
-  // const pref = useRef({ albumID, getAlbumById });
-
-  // //only get album by id when id changed
-  // useEffect(() => {
-  //   console.log('In the get data effect');
-  //   getAlbumById(albumID);
-  //   return () => {
-  //     console.log('Clean up get data effect');
-  //     if (albumID !== pref.current.albumID) {
-  //       console.log('XXXX album ID changed:', pref.current.albumID, albumID);
-  //     }
-  //     if (getAlbumById !== pref.current.getAlbumById) {
-  //       console.log(
-  //         'XXX getAlbumById changed',
-  //         pref.current.getAlbumById,
-  //         getAlbumById
-  //       );
-  //     }
-  //   };
-  // }, [albumID, getAlbumById]);
-
   const isMounted = useIsMounted();
   useEffect(() => {
     //only if loading is false and still mounted
     if (loading === false && isMounted.current && album !== null) {
-      const { albumID, albumName } = album;
+      const { albumID, albumName, albumInfo } = album;
       setFormData({
         albumID,
-        albumName
+        albumName,
+        albumInfo
       });
     }
   }, [album, isMounted, loading]);
@@ -86,6 +67,15 @@ const EditAlbum = ({
                     placeholder='Album name'
                     name='albumName'
                     value={albumName}
+                    onChange={e => onChange(e)}
+                  />
+                </div>
+                <div className={styles.FormGroup}>
+                  <textarea
+                    rows='5'
+                    placeholder='Album info'
+                    name='albumInfo'
+                    value={albumInfo}
                     onChange={e => onChange(e)}
                   />
                 </div>
@@ -128,7 +118,6 @@ const mapStateToProps = state => ({
   album: state.album
 });
 
-export default connect(
-  mapStateToProps,
-  { createAlbum, getAlbumById }
-)(withRouter(EditAlbum));
+export default connect(mapStateToProps, { createAlbum, getAlbumById })(
+  withRouter(EditAlbum)
+);

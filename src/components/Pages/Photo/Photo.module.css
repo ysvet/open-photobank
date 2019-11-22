@@ -70,12 +70,13 @@
   width: 100%;
   max-width: 1200px;
   box-shadow: 0 2px 3px #ccc;
-  border: 1px solid #eee;
+  /* border: 1px solid #eee; */
   padding: 15px;
   box-sizing: border-box;
   justify-content: left;
   text-align: left;
   font-size: 1.1rem;
+  background-color: WhiteSmoke;
 }
 
 .PhotoDescriptionDescr span {
@@ -174,6 +175,7 @@
 .DownBlockHelp h4 {
   align-self: center;
   padding-top: 10px;
+  color: #364f6b;
 }
 
 @media (min-width: 700px) {

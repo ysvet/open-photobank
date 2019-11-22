@@ -11,6 +11,7 @@ import NotFound from '../../Pages/NotFound/NotFound';
 import Spinner from '../../UI/Spinner/Spinner';
 import MiniSiteMap from '../../Navigation/MiniSiteMap/MiniSiteMap';
 import PhotoDownload from './PhotoDownload/PhotoDownload';
+// import AlbumInfo from '../Albums/AlbumInfo/AlbumInfo';
 
 import OpenSeadragonPhoto from './OpenSeaDragonPhoto';
 import { getPhotoById } from '../../../store/actions/photo';
@@ -23,6 +24,7 @@ const Photo = ({ getPhotoById, photo, loading, match }) => {
     description: '',
     albumID: '',
     albumName: '',
+    albumInfo: '',
     categoryID: '',
     categoryName: '',
     categoryID2: '',
@@ -50,6 +52,7 @@ const Photo = ({ getPhotoById, photo, loading, match }) => {
     description,
     albumID,
     albumName,
+    albumInfo,
     categoryID,
     categoryName,
     categoryID2,
@@ -86,6 +89,7 @@ const Photo = ({ getPhotoById, photo, loading, match }) => {
         description,
         albumID,
         albumName,
+        albumInfo,
         categoryID,
         categoryName,
         categoryID2,
@@ -112,6 +116,7 @@ const Photo = ({ getPhotoById, photo, loading, match }) => {
         description,
         albumID,
         albumName,
+        albumInfo,
         categoryID,
         categoryName,
         categoryID2,
@@ -291,9 +296,21 @@ const Photo = ({ getPhotoById, photo, loading, match }) => {
 
             <div className={styles.PhotoDescriptionDescr}>
               {description ? (
-                <Fragment> {ReactHtmlParser(description)}</Fragment>
+                <Fragment>
+                  {' '}
+                  <span>{ReactHtmlParser(description)}</span>
+                </Fragment>
               ) : null}
             </div>
+
+            {albumInfo ? (
+              <div className={styles.PhotoDescriptionDescr}>
+                <Fragment>
+                  {' '}
+                  <span>{ReactHtmlParser(albumInfo)}</span>
+                </Fragment>
+              </div>
+            ) : null}
 
             <div className={styles.DownBlocks}>
               <Link to={'/contribute'}>

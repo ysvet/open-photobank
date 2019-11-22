@@ -71,6 +71,7 @@ router.post('/upload', auth, upload.single('file'), async (req, res) => {
     sourceWeb,
     author,
     albumID,
+    albumInfo,
     periodID,
     license
   } = req.body;
@@ -115,6 +116,7 @@ router.post('/upload', auth, upload.single('file'), async (req, res) => {
   photoFields.photoFileName = photoFileName;
   photoFields.imgSize = imgSize;
   if (albumID) photoFields.albumName = albumObject.albumName;
+  if (albumID) photoFields.albumInfo = albumObject.albumInfo;
   photoFields.contributorName = contributorObject.name;
   photoFields.contributorWeb = contributorObject.web;
   photoFields.categoryName = categoryObject.categoryName;
@@ -215,6 +217,7 @@ router.post('/', auth, async (req, res) => {
     sourceWeb,
     author,
     albumID,
+    albumInfo,
     periodID,
     license
   } = req.body;
@@ -250,6 +253,7 @@ router.post('/', auth, async (req, res) => {
   });
 
   if (albumID) photoFields.albumName = albumObject.albumName;
+  if (albumID) photoFields.albumInfo = albumObject.albumInfo;
   photoFields.contributorName = contributorObject.name;
   photoFields.contributorWeb = contributorObject.web;
   photoFields.categoryName = categoryObject.categoryName;

@@ -10,6 +10,9 @@ const AlbumSchema = new mongoose.Schema({
     type: String,
     required: true
   },
+  albumInfo: {
+    type: String
+  },
   // photos: [
   //   {
   //     type: mongoose.Schema.Types.ObjectId,

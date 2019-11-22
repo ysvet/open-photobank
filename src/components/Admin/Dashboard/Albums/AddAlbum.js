@@ -9,10 +9,11 @@ import { createAlbum } from '../../../../store/actions/album';
 
 const AddAlbum = ({ createAlbum, album: { album, loading }, history }) => {
   const [formData, setFormData] = useState({
-    albumName: ''
+    albumName: '',
+    albumInfo: ''
   });
 
-  const { albumName } = formData;
+  const { albumName, albumInfo } = formData;
 
   const onChange = e =>
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -37,6 +38,15 @@ const AddAlbum = ({ createAlbum, album: { album, loading }, history }) => {
                 placeholder='Album name'
                 name='albumName'
                 value={albumName}
+                onChange={e => onChange(e)}
+              />
+            </div>
+            <div className={styles.FormGroup}>
+              <textarea
+                rows='5'
+                placeholder='Album info'
+                name='albumInfo'
+                value={albumInfo}
                 onChange={e => onChange(e)}
               />
             </div>
@@ -66,7 +76,4 @@ const mapStateToProps = state => ({
   album: state.album
 });
 
-export default connect(
-  mapStateToProps,
-  { createAlbum }
-)(withRouter(AddAlbum));
+export default connect(mapStateToProps, { createAlbum })(withRouter(AddAlbum));

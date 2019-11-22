@@ -15,13 +15,14 @@ router.post('/', auth, async (req, res) => {
   if (!errors.isEmpty()) {
     return res.status(400).json({ errors: errors.array() });
   }
-  const { albumID, albumName } = req.body;
+  const { albumID, albumName, albumInfo } = req.body;
 
   // Build album object
   const albumFields = {};
 
   if (albumID) albumFields.albumID = albumID;
   if (albumName) albumFields.albumName = albumName;
+  if (albumInfo) albumFields.albumInfo = albumInfo;
 
   try {
     let album = await Album.findOne({

@@ -66,6 +66,9 @@ const PhotoSchema = new mongoose.Schema({
   albumName: {
     type: String
   },
+  albumInfo: {
+    type: String
+  },
   periodID: {
     type: Number
   },
