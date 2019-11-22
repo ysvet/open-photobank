@@ -71,7 +71,6 @@ router.post('/upload', auth, upload.single('file'), async (req, res) => {
     sourceWeb,
     author,
     albumID,
-    albumInfo,
     periodID,
     license
   } = req.body;
@@ -217,7 +216,6 @@ router.post('/', auth, async (req, res) => {
     sourceWeb,
     author,
     albumID,
-    albumInfo,
     periodID,
     license
   } = req.body;

@@ -44,7 +44,7 @@ const AddAlbum = ({ createAlbum, album: { album, loading }, history }) => {
             <div className={styles.FormGroup}>
               <textarea
                 rows='5'
-                placeholder='Album info'
+                placeholder='Album info (can be formatted with HTML tags)'
                 name='albumInfo'
                 value={albumInfo}
                 onChange={e => onChange(e)}
