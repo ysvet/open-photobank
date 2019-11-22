@@ -296,6 +296,15 @@ const Photo = ({ getPhotoById, photo, loading, match }) => {
             </div>
 
             <div className={styles.DownBlocks}>
+              <Link to={'/contribute'}>
+                <div className={styles.DownBlockHelp}>
+                  <h4>Contribute</h4>
+                </div>
+              </Link>
+              <div className={styles.DownBlockLicense}>
+                <h5>{license}</h5>
+                <h6>{showLicense}</h6>
+              </div>
               <a
                 href={`../uploads/${photoFileName}`}
                 download={`openphotobank-${title.replace(
@@ -310,15 +319,6 @@ const Photo = ({ getPhotoById, photo, loading, match }) => {
                   <PhotoDownload photoSize={photoSize} />
                 </div>
               </a>
-              <div className={styles.DownBlockLicense}>
-                <h5>{license}</h5>
-                <h6>{showLicense}</h6>
-              </div>
-              <Link to={'/contribute'}>
-                <div className={styles.DownBlockHelp}>
-                  <h4>Contribute</h4>
-                </div>
-              </Link>
             </div>
           </div>
         </div>

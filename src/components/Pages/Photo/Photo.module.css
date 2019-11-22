@@ -6,7 +6,7 @@
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  padding: 10px;
+  padding: 10px 15px 10px 0;
   box-sizing: border-box;
 }
 
@@ -19,6 +19,7 @@
 }
 
 .Viewer {
+  margin: 0 auto 0 auto;
   width: 100%;
   height: 400px;
   text-decoration: none;
@@ -70,14 +71,15 @@
   max-width: 1200px;
   box-shadow: 0 2px 3px #ccc;
   border: 1px solid #eee;
-  padding: 5px;
+  padding: 15px;
   box-sizing: border-box;
   justify-content: left;
   text-align: left;
+  font-size: 1.1rem;
 }
 
 .PhotoDescriptionDescr span {
-  text-align: justify;
+  text-align: left;
   font-size: 1.3rem;
 }
 
@@ -107,6 +109,7 @@
   display: block;
   margin: 10px 5px;
   width: 280px;
+  min-width: 200px;
   height: 80px;
   justify-content: center;
   text-align: center;
@@ -177,11 +180,19 @@
   .DownBlocks {
     flex-flow: row;
   }
+  .PhotoPage {
+    display: flex;
+    align-items: center;
+  }
 }
 
 @media (min-width: 600px) {
   .Viewer {
     width: 100%;
     height: 600px;
+  }
+  .PhotoPage {
+    display: flex;
+    align-items: center;
   }
 }

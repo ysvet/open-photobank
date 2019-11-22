@@ -6,7 +6,8 @@ import { Link } from 'react-router-dom';
 import Head from '../../Head/Head';
 import Spinner from '../../UI/Spinner/Spinner';
 import TitleBlock from '../../TitleBlock/TitleBlock';
-import CategoryCard from './CategoryCard/CategoryCard';
+// import CategoryCard from './CategoryCard/CategoryCard';
+import Card from '../../Card/Card';
 import { getAllCategories } from '../../../store/actions/category';
 
 import styles from './Categories.module.css';
@@ -24,10 +25,10 @@ const Categories = ({
       key={category.categoryID}
       to={{ pathname: `/categories/${category.categoryID}` }}
     >
-      <CategoryCard
-        catName={category.categoryName}
-        catImageLink={`/img/cards/categories/${category.categoryID}.jpg`}
-        catDescription={category.categoryDescription}
+      <Card
+        cardTitle={category.categoryName}
+        imgLink={`/img/cards/categories/${category.categoryID}.jpg`}
+        cardText={category.categoryDescription}
       />
     </Link>
   ));

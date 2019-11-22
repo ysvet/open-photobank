@@ -34,4 +34,7 @@
   .MiniSiteMap {
     flex-flow: column;
   }
+  .MapElement {
+    padding: 1px 0px 1px 0px;
+  }
 }
