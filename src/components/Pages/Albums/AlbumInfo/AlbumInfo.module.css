@@ -16,3 +16,12 @@
 .AlbumInfo a {
   outline: none;
 }
+
+@media (max-width: 699px) {
+  .AlbumInfo span {
+    font-size: 0.7rem;
+  }
+  .AlbumInfo {
+    padding: 5px;
+  }
+}
