@@ -7,7 +7,7 @@
   flex-flow: row wrap;
   align-content: flex-start;
   align-items: center;
-  justify-content: space-between;
+  justify-content: left;
   padding: 0.9em;
 }
 

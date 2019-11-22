@@ -94,6 +94,12 @@ PhotoSchema.plugin(autoIncrement.plugin, {
   incrementBy: 1
 });
 
-PhotoSchema.index({ title: 'text', description: 'text' });
+PhotoSchema.index({
+  title: 'text',
+  description: 'text',
+  albumInfo: 'text',
+  author: 'text',
+  source: 'text'
+});
 
 module.exports = Photo = mongoose.model('photo', PhotoSchema);
