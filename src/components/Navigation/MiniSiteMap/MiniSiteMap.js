@@ -22,8 +22,8 @@ const MiniSiteMap = ({
 
   let showAlbName = null;
 
-  albName && albName.length > 18
-    ? (showAlbName = albName.slice(0, 18) + '...')
+  albName && albName.length > 25
+    ? (showAlbName = albName.slice(0, 25) + '...')
     : (showAlbName = albName);
 
   catalogItemCategory = (
@@ -79,6 +79,5 @@ const MiniSiteMap = ({
     </div>
   );
 };
-
 
 export default MiniSiteMap;
