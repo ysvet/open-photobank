@@ -277,7 +277,7 @@ const AddPhoto = ({
             <div className={styles.FormGroup}>
               <input
                 type='text'
-                placeholder='Source Web'
+                placeholder='Source Web (full address with http://)'
                 name='sourceWeb'
                 value={sourceWeb}
                 onChange={e => onChange(e)}
