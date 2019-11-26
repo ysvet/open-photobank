@@ -117,7 +117,7 @@ router.get('/:contributor_id', async (req, res) => {
 //@desc Get an contributor with it's photos by contributorID with pagination
 //@access Public
 
-const ITEMS_PER_PAGE = 40;
+const ITEMS_PER_PAGE = 35;
 
 router.get('/:contributor_id/photos', async (req, res) => {
   try {

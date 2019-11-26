@@ -115,7 +115,7 @@ router.get('/:category_id', async (req, res) => {
 //@desc Get a category with it's photos by categoryID with pagination
 //@access Public
 
-const ITEMS_PER_PAGE = 40;
+const ITEMS_PER_PAGE = 35;
 router.get('/:category_id/photos', async (req, res) => {
   try {
     const category = await Category.findOne({

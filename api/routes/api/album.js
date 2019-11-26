@@ -155,7 +155,7 @@ router.get('/:album_id', async (req, res) => {
 //@desc Get an album with it's photos by albumID with pagination
 //@access Public
 
-const ITEMS_PER_PAGE = 40;
+const ITEMS_PER_PAGE = 35;
 
 router.get('/:album_id/photos', async (req, res) => {
   try {
