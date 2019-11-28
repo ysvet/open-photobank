@@ -35,3 +35,9 @@
   left: 0px;
   opacity: 0.9;
 }
+
+@media (max-width: 699px) {
+  .Album {
+    justify-content: center;
+  }
+}

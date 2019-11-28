@@ -75,7 +75,7 @@ const Category = ({
       <Link to={`/photos/${photo.photoID}`}>
         <PhotoCard
           title={photo.title}
-          category={photo.categoryName}
+          cardInfo={photo.locationName}
           src={`../uploads/thumbs/${photo.photoFileName}`}
         />
       </Link>

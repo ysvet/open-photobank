@@ -27,10 +27,19 @@ const SliderBlock = ({
     arrows: true,
     infinite: true,
     speed: 500,
-    slidesToShow: 5,
+    slidesToShow: 7,
     slidesToScroll: 3,
     // className: styles.SliderCustom,
     responsive: [
+      {
+        breakpoint: 1800,
+        settings: {
+          slidesToShow: 5,
+          slidesToScroll: 3,
+          infinite: true,
+          dots: true
+        }
+      },
       {
         breakpoint: 1600,
         settings: {
@@ -79,8 +88,7 @@ const SliderBlock = ({
         settings: {
           slidesToShow: 1,
           slidesToScroll: 1,
-          dots: false,
-          infinite: false
+          dots: false
         }
       }
     ]
@@ -91,7 +99,7 @@ const SliderBlock = ({
       <Link to={`/photos/${photo.photoID}`}>
         <PhotoCard
           title={photo.title}
-          category={photo.categoryName}
+          cardInfo={photo.locationName}
           src={`../uploads/thumbs/${photo.photoFileName}`}
         />
       </Link>

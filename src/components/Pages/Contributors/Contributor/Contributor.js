@@ -76,7 +76,7 @@ const Contributor = ({
       <Link to={`/photos/${photo.photoID}`}>
         <PhotoCard
           title={photo.title}
-          category={photo.categoryName}
+          cardInfo={photo.categoryName}
           src={`../uploads/thumbs/${photo.photoFileName}`}
         />
       </Link>

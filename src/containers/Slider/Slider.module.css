@@ -25,3 +25,13 @@
   width: auto;
   margin: 0 auto;
 }
+
+@media (max-width: 449px) {
+  .SlideCard {
+    margin-left: -15px;
+  }
+
+  .SliderBlock {
+    justify-content: center;
+  }
+}

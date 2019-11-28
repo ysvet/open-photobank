@@ -22,3 +22,9 @@
   padding: 10px;
   /* flex-grow: 1; */
 }
+
+@media (max-width: 699px) {
+  .ShowCards {
+    justify-content: center;
+  }
+}

@@ -31,3 +31,9 @@
   left: 0px;
   opacity: 0.9;
 }
+
+@media (max-width: 699px) {
+  .Category {
+    justify-content: center;
+  }
+}
