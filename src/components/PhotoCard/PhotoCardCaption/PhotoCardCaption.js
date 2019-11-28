@@ -9,8 +9,8 @@ const PhotoCardCaption = ({ title, cardInfo }) => {
     : (showTitle = title);
 
   let showInfo = '';
-  cardInfo && cardInfo.length > 17
-    ? (showInfo = cardInfo.slice(0, 17) + '...')
+  cardInfo && cardInfo.length > 21
+    ? (showInfo = cardInfo.slice(0, 18) + '...')
     : (showInfo = cardInfo);
 
   return (
