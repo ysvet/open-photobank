@@ -26,6 +26,7 @@
 
 .SearchBar {
   width: 80%;
+  max-width: 800px;
   position: relative;
   display: flex;
   flex-wrap: wrap;
