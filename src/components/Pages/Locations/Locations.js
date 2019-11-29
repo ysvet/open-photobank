@@ -6,6 +6,8 @@ import { Link } from 'react-router-dom';
 import Head from '../../Head/Head';
 import TitleBlock from '../../TitleBlock/TitleBlock';
 import Spinner from '../../UI/Spinner/Spinner';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faMinus } from '@fortawesome/free-solid-svg-icons';
 import { getAllLocations } from '../../../store/actions/location';
 
 import styles from './Locations.module.css';
@@ -31,6 +33,7 @@ const Locations = ({ getAllLocations, location: { locations, loading } }) => {
     <li key={location.locationID}>
       <h2>
         <Link to={{ pathname: `/locations/${location.locationID}` }}>
+          <FontAwesomeIcon icon={faMinus} className={styles.Icon} /> {''}{' '}
           {location.locationName}
         </Link>
       </h2>
