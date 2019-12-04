@@ -14,6 +14,8 @@ import Albums from './components/Pages/Albums/Albums';
 import Album from './components/Pages/Albums/Album/Album';
 import Locations from './components/Pages/Locations/Locations';
 import Location from './components/Pages/Locations/Location/Location';
+import LocationCat from './components/Pages/Locations/LocationCat/LocationCat';
+import LocationTime from './components/Pages/Locations/LocationTime/LocationTime';
 import Periods from './components/Pages/Periods/Periods';
 import Period from './components/Pages/Periods/Period/Period';
 import About from './components/Pages/About/About';
@@ -149,6 +151,16 @@ const router = (
         <Route exact path='/time-periods/:id' component={Period} />
         <Route exact path='/locations' component={Locations} />
         <Route exact path='/locations/:id' component={Location} />
+        <Route
+          exact
+          path='/locations/:id/category/:idCat'
+          component={LocationCat}
+        />
+        <Route
+          exact
+          path='/locations/:id/period/:idPeriod'
+          component={LocationTime}
+        />
         <Route exact path='/albums' component={Albums} />
         <Route exact path='/albums/:id' component={Album} />
         <Route exact path='/latest' component={Latest} />

@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import queryString from 'query-string';
 import useIsMounted from '../../../../utils/isMounted';
-import Dropdown from '../../../Navigation/Dropdown/Dropdown';
 import DropdownPeriod from '../../../Navigation/Dropdown/DropdownPeriod';
 
 import Pagination from '../../../Navigation/Pagination/Pagination';
@@ -12,13 +11,12 @@ import Head from '../../../Head/Head';
 import Spinner from '../../../UI/Spinner/Spinner';
 import TitleBlock from '../../../TitleBlock/TitleBlock';
 import PhotoCard from '../../../PhotoCard/PhotoCard';
-import { getLocationPhotos } from '../../../../store/actions/location';
-import { getAllCategories } from '../../../../store/actions/category';
+import { getLocationTimePhotos } from '../../../../store/actions/location';
 import { getAllPeriods } from '../../../../store/actions/period';
 
-import styles from './Location.module.css';
+import styles from './LocationTime.module.css';
 
-const Location = ({
+const LocationTime = ({
   locationState: {
     locationObj,
     loading,
@@ -32,10 +30,8 @@ const Location = ({
     previousPage
   },
   photos,
-  categories,
   periods,
-  getLocationPhotos,
-  getAllCategories,
+  getLocationTimePhotos,
   getAllPeriods,
   match,
   location
@@ -62,10 +58,14 @@ const Location = ({
   const pageNow = queryValues.page;
 
   useEffect(() => {
-    getLocationPhotos(match.params.id, pageNow);
-    getAllCategories();
+    getLocationTimePhotos(match.params.id, match.params.idPeriod, pageNow);
     getAllPeriods();
-  }, [getLocationPhotos, getAllCategories, getAllPeriods]);
+  }, [
+    getLocationTimePhotos,
+    getAllPeriods,
+    match.params.id,
+    match.params.idPeriod
+  ]);
 
   const isMounted = useIsMounted();
   useEffect(() => {
@@ -85,15 +85,15 @@ const Location = ({
       <Link to={`/photos/${photo.photoID}`}>
         <PhotoCard
           title={photo.title}
-          cardInfo={photo.categoryName}
-          src={`../uploads/thumbs/${photo.photoFileName}`}
+          cardInfo={photo.periodName}
+          src={`../../../uploads/thumbs/${photo.photoFileName}`}
         />
       </Link>
     </div>
   ));
 
   const getPhotosHadler = pageNum =>
-    getLocationPhotos(match.params.id, pageNum);
+    getLocationTimePhotos(match.params.id, match.params.idPeriod, pageNum);
   const comeFrom = location.search;
 
   const showLocation = (
@@ -113,14 +113,11 @@ const Location = ({
             {' '}
             <div className={styles.Dropdown}>
               {' '}
-              <Dropdown locationID={locationID} categories={categories} />
-            </div>
-            <div className={styles.Dropdown}>
-              {' '}
               <DropdownPeriod locationID={locationID} periods={periods} />
             </div>
           </div>
         )}
+        {!loading && photoCards.length === 0 && <h2>No images here yet</h2>}
         {(loading || locationID === match.params.id) && <Spinner />}
         {(!loading || locationID === match.params.id) && (
           <Fragment>
@@ -150,11 +147,9 @@ const Location = ({
 };
 
 Location.propTypes = {
-  getLocationPhotos: PropTypes.func.isRequired,
-  getAllCategories: PropTypes.func.isRequired,
+  getLocationTimePhotos: PropTypes.func.isRequired,
   getAllPeriods: PropTypes.func.isRequired,
   photos: PropTypes.array.isRequired,
-  categories: PropTypes.array.isRequired,
   periods: PropTypes.array.isRequired,
   locationState: PropTypes.object.isRequired
 };
@@ -162,12 +157,10 @@ Location.propTypes = {
 const mapStateToProps = state => ({
   locationState: state.location,
   photos: state.location.photos,
-  categories: state.category.categories,
   periods: state.period.periods
 });
 
 export default connect(mapStateToProps, {
-  getLocationPhotos,
-  getAllCategories,
+  getLocationTimePhotos,
   getAllPeriods
-})(Location);
+})(LocationTime);

@@ -13,12 +13,14 @@ const MiniSiteMap = ({
   locName,
   albLink,
   albName,
+  history,
   exact
 }) => {
   let catalogItemCategory = null;
   let catalogItemLocation = null;
   let catalogItemPeriod = null;
   let catalogItemAlbum = null;
+  let historyItem = null;
 
   let showAlbName = null;
 
@@ -70,8 +72,15 @@ const MiniSiteMap = ({
     </div>
   );
 
+  historyItem = (
+    <div className={styles.MapElementBack} onClick={() => history.goBack()}>
+      <span>Go back</span>
+    </div>
+  );
+
   return (
     <div className={styles.MiniSiteMap}>
+      {history.location.key ? <span> {historyItem} </span> : null}
       {catLink ? <span> {catalogItemCategory} </span> : null}
       {locLink ? <span> {catalogItemLocation} </span> : null}
       {perLink ? <span> {catalogItemPeriod} </span> : null}

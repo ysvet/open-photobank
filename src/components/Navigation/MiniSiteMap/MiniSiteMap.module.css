@@ -16,6 +16,23 @@
   color: white;
 }
 
+.MapElementBack {
+  display: inline-block;
+  padding: 5px 10px;
+  color: white;
+  cursor: pointer;
+}
+
+.MapElementBack span {
+  color: white;
+  height: 100%;
+  border-bottom: 4px solid transparent;
+}
+
+.MapElementBack span:hover {
+  border-bottom: 2px solid #40a4c8;
+}
+
 .MapElement a {
   /* color: white; */
   color: white;

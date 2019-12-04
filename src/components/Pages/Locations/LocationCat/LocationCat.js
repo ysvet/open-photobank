@@ -5,20 +5,18 @@ import { Link } from 'react-router-dom';
 import queryString from 'query-string';
 import useIsMounted from '../../../../utils/isMounted';
 import Dropdown from '../../../Navigation/Dropdown/Dropdown';
-import DropdownPeriod from '../../../Navigation/Dropdown/DropdownPeriod';
 
 import Pagination from '../../../Navigation/Pagination/Pagination';
 import Head from '../../../Head/Head';
 import Spinner from '../../../UI/Spinner/Spinner';
 import TitleBlock from '../../../TitleBlock/TitleBlock';
 import PhotoCard from '../../../PhotoCard/PhotoCard';
-import { getLocationPhotos } from '../../../../store/actions/location';
+import { getLocationCatPhotos } from '../../../../store/actions/location';
 import { getAllCategories } from '../../../../store/actions/category';
-import { getAllPeriods } from '../../../../store/actions/period';
 
-import styles from './Location.module.css';
+import styles from './LocationCat.module.css';
 
-const Location = ({
+const LocationCat = ({
   locationState: {
     locationObj,
     loading,
@@ -33,10 +31,8 @@ const Location = ({
   },
   photos,
   categories,
-  periods,
-  getLocationPhotos,
+  getLocationCatPhotos,
   getAllCategories,
-  getAllPeriods,
   match,
   location
 }) => {
@@ -62,10 +58,14 @@ const Location = ({
   const pageNow = queryValues.page;
 
   useEffect(() => {
-    getLocationPhotos(match.params.id, pageNow);
+    getLocationCatPhotos(match.params.id, match.params.idCat, pageNow);
     getAllCategories();
-    getAllPeriods();
-  }, [getLocationPhotos, getAllCategories, getAllPeriods]);
+  }, [
+    getLocationCatPhotos,
+    getAllCategories,
+    match.params.id,
+    match.params.idCat
+  ]);
 
   const isMounted = useIsMounted();
   useEffect(() => {
@@ -86,14 +86,14 @@ const Location = ({
         <PhotoCard
           title={photo.title}
           cardInfo={photo.categoryName}
-          src={`../uploads/thumbs/${photo.photoFileName}`}
+          src={`../../../uploads/thumbs/${photo.photoFileName}`}
         />
       </Link>
     </div>
   ));
 
   const getPhotosHadler = pageNum =>
-    getLocationPhotos(match.params.id, pageNum);
+    getLocationCatPhotos(match.params.id, match.params.idCat, pageNum);
   const comeFrom = location.search;
 
   const showLocation = (
@@ -115,12 +115,9 @@ const Location = ({
               {' '}
               <Dropdown locationID={locationID} categories={categories} />
             </div>
-            <div className={styles.Dropdown}>
-              {' '}
-              <DropdownPeriod locationID={locationID} periods={periods} />
-            </div>
           </div>
         )}
+        {!loading && photoCards.length === 0 && <h2>No images here yet</h2>}
         {(loading || locationID === match.params.id) && <Spinner />}
         {(!loading || locationID === match.params.id) && (
           <Fragment>
@@ -150,24 +147,20 @@ const Location = ({
 };
 
 Location.propTypes = {
-  getLocationPhotos: PropTypes.func.isRequired,
+  getLocationCatPhotos: PropTypes.func.isRequired,
   getAllCategories: PropTypes.func.isRequired,
-  getAllPeriods: PropTypes.func.isRequired,
   photos: PropTypes.array.isRequired,
   categories: PropTypes.array.isRequired,
-  periods: PropTypes.array.isRequired,
   locationState: PropTypes.object.isRequired
 };
 
 const mapStateToProps = state => ({
   locationState: state.location,
   photos: state.location.photos,
-  categories: state.category.categories,
-  periods: state.period.periods
+  categories: state.category.categories
 });
 
 export default connect(mapStateToProps, {
-  getLocationPhotos,
-  getAllCategories,
-  getAllPeriods
-})(Location);
+  getLocationCatPhotos,
+  getAllCategories
+})(LocationCat);

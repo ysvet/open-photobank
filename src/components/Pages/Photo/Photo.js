@@ -16,7 +16,7 @@ import PhotoDownload from './PhotoDownload/PhotoDownload';
 import OpenSeadragonPhoto from './OpenSeaDragonPhoto';
 import { getPhotoById } from '../../../store/actions/photo';
 
-const Photo = ({ getPhotoById, photo, loading, match }) => {
+const Photo = ({ getPhotoById, photo, loading, match, history }) => {
   const [photoData, setPhotoData] = useState({
     photoID: match.params.id,
     photoFileName: '',
@@ -167,6 +167,8 @@ const Photo = ({ getPhotoById, photo, loading, match }) => {
     showLicense = '--Short license description--';
   }
 
+  console.log(history, 'HISTORY');
+
   return !photo ? (
     loading || +match.params.id === +photoID ? (
       <Spinner />
@@ -178,6 +180,7 @@ const Photo = ({ getPhotoById, photo, loading, match }) => {
       <Head title={title} content={description} />
       {+match.params.id === +photoID && (
         <MiniSiteMap
+          history={history}
           catLink={`/categories/${categoryID}`}
           catName={categoryName}
           locLink={`/locations/${locationID}`}

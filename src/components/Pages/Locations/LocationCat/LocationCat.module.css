@@ -10,11 +10,11 @@
 }
 
 .Dropdown {
-  /* margin: 0 auto 0 auto; */
-  max-width: 300px;
-  /* width: 90%; */
+  margin: 0 auto 0 auto;
+  max-width: 1600px;
+  width: 90%;
   display: flex;
-  /* flex-flow: row wrap; */
+  flex-flow: row wrap;
   align-content: flex-start;
   justify-content: left;
   padding: 0.2em;
@@ -40,6 +40,10 @@
   box-sizing: border-box;
 }
 
+.Container h2 {
+  padding: 40px;
+}
+
 .SlideCard {
   padding: 10px;
 }
@@ -61,8 +65,5 @@
   }
   .DropdownPanel {
     padding: 0;
-  }
-  .DropdownPanel {
-    flex-flow: column;
   }
 }

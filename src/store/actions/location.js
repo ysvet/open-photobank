@@ -63,6 +63,52 @@ export const getLocationPhotos = (locationID, page) => async dispatch => {
   }
 };
 
+//Get a location with photos by category with pagination
+export const getLocationCatPhotos = (
+  locationID,
+  categoryID,
+  page
+) => async dispatch => {
+  try {
+    dispatch({ type: LOAD_LOCATION });
+    const res = await axios.get(
+      `/api/location/${locationID}/photos/${categoryID}?page=${page}`
+    );
+    dispatch({
+      type: GET_LOCATION_PHOTOS,
+      payload: res.data
+    });
+  } catch (err) {
+    dispatch({
+      type: LOCATIONS_ERROR,
+      payload: { msg: err.response.statusText, status: err.response.status }
+    });
+  }
+};
+
+//Get a location with photos by period with pagination
+export const getLocationTimePhotos = (
+  locationID,
+  periodID,
+  page
+) => async dispatch => {
+  try {
+    dispatch({ type: LOAD_LOCATION });
+    const res = await axios.get(
+      `/api/location/${locationID}/photos-period/${periodID}?page=${page}`
+    );
+    dispatch({
+      type: GET_LOCATION_PHOTOS,
+      payload: res.data
+    });
+  } catch (err) {
+    dispatch({
+      type: LOCATIONS_ERROR,
+      payload: { msg: err.response.statusText, status: err.response.status }
+    });
+  }
+};
+
 // // Get location by name
 // export const getLocationByName = locationName => async dispatch => {
 //   try {
