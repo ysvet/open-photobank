@@ -1,9 +1,11 @@
 import React, { Fragment, useEffect, useState } from 'react';
+import { NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import queryString from 'query-string';
 import useIsMounted from '../../../../utils/isMounted';
+import Collapsible from 'react-collapsible';
 
 import Pagination from '../../../Navigation/Pagination/Pagination';
 import Head from '../../../Head/Head';
@@ -11,6 +13,7 @@ import Spinner from '../../../UI/Spinner/Spinner';
 import TitleBlock from '../../../TitleBlock/TitleBlock';
 import PhotoCard from '../../../PhotoCard/PhotoCard';
 import { getLocationPhotos } from '../../../../store/actions/location';
+import { getAllCategories } from '../../../../store/actions/category';
 
 import styles from './Location.module.css';
 
@@ -28,7 +31,9 @@ const Location = ({
     previousPage
   },
   photos,
+  categories,
   getLocationPhotos,
+  getAllCategories,
   match,
   location
 }) => {
@@ -55,7 +60,8 @@ const Location = ({
 
   useEffect(() => {
     getLocationPhotos(match.params.id, pageNow);
-  }, [getLocationPhotos]);
+    getAllCategories();
+  }, [getLocationPhotos, getAllCategories]);
 
   const isMounted = useIsMounted();
   useEffect(() => {
@@ -69,6 +75,21 @@ const Location = ({
       setPhotosData(photosData);
     }
   }, [locationObj, isMounted, loading]);
+
+  const [formCatData, setFormCatData] = useState({
+    categoryID: ''
+  });
+
+  const { categoryID } = formCatData;
+
+  const onChange = e =>
+    setFormCatData({ ...formCatData, [e.target.name]: e.target.value });
+
+  const selectCategory = categories.map(category => (
+    <option key={category.categoryID} value={category.categoryID}>
+      {category.categoryName}
+    </option>
+  ));
 
   let photoCards = photos.map(photo => (
     <div className={styles.SlideCard} key={photo.photoID}>
@@ -84,6 +105,10 @@ const Location = ({
 
   const getPhotosHadler = pageNum =>
     getLocationPhotos(match.params.id, pageNum);
+
+  const getCatPhotosHandler = catID =>
+    getCatLocationPhotos(match.params.id, catID);
+
   const comeFrom = location.search;
 
   const showLocation = (
@@ -101,6 +126,36 @@ const Location = ({
         {(loading || locationID === match.params.id) && <Spinner />}
         {(!loading || locationID === match.params.id) && (
           <Fragment>
+            <div className={styles.Filter}>
+              <Collapsible
+                trigger='Start here'
+                className={styles.Collapsible}
+                openedClassName={styles.CollapsibleOpened}
+                contentOuterClassName={styles.CollapsibleOuter}
+                contentInnerClassName={styles.CollapsibleInner}
+                triggerStyle={{ padding: ' 5px 5px', cursor: 'pointer' }}
+                triggerWhenOpen='Close filter'
+              >
+                <div className={styles.FormGroup}>
+                  <select
+                    name='categoryID'
+                    value={categoryID}
+                    onChange={e => onChange(e)}
+                  >
+                    <option value='0'>* Select category</option>
+                    {selectCategory}
+                  </select>
+                </div>
+                <NavLink
+                  to={`?category=${categoryID}`}
+                  onClick={() => getCatPhotosHandler(categoryID)}
+                  exact
+                  activeClassName={styles.active}
+                >
+                  Filter
+                </NavLink>
+              </Collapsible>
+            </div>
             <div className={styles.Location}>{photoCards}</div>
           </Fragment>
         )}
@@ -128,13 +183,18 @@ const Location = ({
 
 Location.propTypes = {
   getLocationPhotos: PropTypes.func.isRequired,
+  getAllCategories: PropTypes.func.isRequired,
   photos: PropTypes.array.isRequired,
   locationState: PropTypes.object.isRequired
 };
 
 const mapStateToProps = state => ({
   locationState: state.location,
-  photos: state.location.photos
+  photos: state.location.photos,
+  categories: state.category.categories
 });
 
-export default connect(mapStateToProps, { getLocationPhotos })(Location);
+export default connect(mapStateToProps, {
+  getLocationPhotos,
+  getAllCategories
+})(Location);

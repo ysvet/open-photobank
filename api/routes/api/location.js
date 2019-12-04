@@ -183,6 +183,62 @@ router.get('/:location_id/photos', async (req, res) => {
   }
 });
 
+//@route GET api/location/:location_id/catphotos
+//@desc Get an location  by locationID with it's photos anb by category with pagination
+//@access Public
+
+router.get('/:location_id/catphotos', async (req, res) => {
+  try {
+    const location = await Location.findOne({
+      locationID: req.params.location_id
+    });
+
+    if (!location) return res.status(400).json({ msg: 'Location not found' });
+
+    const page = +req.query.page || 1;
+
+    const currentPage = page;
+
+    const totalPhotos = await Photo.find({
+      locationID: req.params.location_id,
+      categoryID: req.query.category
+    }).countDocuments();
+
+    const hasNextPage = ITEMS_PER_PAGE * page < totalPhotos;
+    const hasPreviousPage = page > 1;
+    const nextPage = page + 1;
+    const previousPage = page - 1;
+    const lastPage = Math.ceil(totalPhotos / ITEMS_PER_PAGE);
+
+    const locationPhotos = await Photo.find({
+      locationID: req.params.location_id,
+      categoryID: req.query.category
+    })
+      .sort({ photoID: +1 })
+      .skip((page - 1) * ITEMS_PER_PAGE)
+      .limit(ITEMS_PER_PAGE);
+
+    res.json({
+      locationPhotos: locationPhotos,
+      location: location,
+      totalPhotos: totalPhotos,
+      itemsPerPage: ITEMS_PER_PAGE,
+      currentPage: currentPage,
+      hasNextPage: hasNextPage,
+      nextPage: nextPage,
+      hasPreviousPage: hasPreviousPage,
+      lastPage: lastPage,
+      previousPage: previousPage
+    });
+  } catch (err) {
+    console.error(err.message);
+    if (err.kind === 'ObjectId') {
+      return res.status(400).json({ msg: 'Location not found' });
+    }
+    res.status(500).send('Server error');
+  }
+});
+
 //@route DELETE api/location/:location_id
 //@desc Delete a location
 //@access Private
