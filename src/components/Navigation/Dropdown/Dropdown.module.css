@@ -43,6 +43,7 @@
   background-color: #f5f5f5;
   padding-left: 8px;
   padding-top: 3px;
+  padding-bottom: 3px;
   /* border-radius: 5px; */
   font-weight: bold;
   color: #364f6b;
@@ -67,6 +68,29 @@
 
 @media (max-width: 699px) {
   .Dropdown {
+    width: 300px;
+  }
+
+  .Dropdown ul {
+    width: 300px;
+    font-weight: normal;
+  }
+
+  .Dropdown .button {
+    width: 300px;
+    height: 20px;
+    margin: 0 auto;
+  }
+  .Dropdown .button:before {
+    right: 10px;
+  }
+  .Dropdown ul {
+    top: 32px;
+  }
+}
+
+@media (max-width: 319px) {
+  .Dropdown {
     width: 250px;
   }
 
@@ -80,6 +104,6 @@
     height: 20px;
   }
   .Dropdown .button:before {
-    right: 70px;
+    right: 80px;
   }
 }

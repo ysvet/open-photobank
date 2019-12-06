@@ -41,6 +41,7 @@
 @media (max-width: 699px) {
   .SearchBar {
     width: 95%;
+    margin: 30px auto 25px auto;
   }
   .SearchTerm {
     width: 80%;

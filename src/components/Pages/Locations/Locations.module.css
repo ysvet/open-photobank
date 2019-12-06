@@ -47,3 +47,9 @@
 .SearchTerm:focus {
   color: #00b4cc;
 }
+
+@media (max-width: 699px) {
+  .Container {
+    margin: 70px auto 40px auto;
+  }
+}

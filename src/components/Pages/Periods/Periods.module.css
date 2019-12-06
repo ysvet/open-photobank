@@ -23,3 +23,9 @@
   padding: 2px;
   box-sizing: border-box;
 }
+
+@media (max-width: 699px) {
+  .Container {
+    margin: 70px auto 40px auto;
+  }
+}

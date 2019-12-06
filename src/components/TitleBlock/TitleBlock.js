@@ -5,7 +5,7 @@ import styles from './TitleBlock.module.css';
 const TitleBlock = ({ pageTitle }) => {
   return (
     <div className={styles.PageTitle}>
-      <h1>{pageTitle}</h1>
+      <span>{pageTitle}</span>
       <hr />
     </div>
   );

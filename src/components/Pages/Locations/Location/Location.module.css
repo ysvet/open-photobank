@@ -10,7 +10,7 @@
 }
 
 .Dropdown {
-  /* margin: 0 auto 0 auto; */
+  margin: 0 auto 0 auto;
   max-width: 300px;
   /* width: 90%; */
   display: flex;
@@ -64,5 +64,8 @@
   }
   .DropdownPanel {
     flex-flow: column;
+  }
+  .Dropdown {
+    margin: 0 auto;
   }
 }

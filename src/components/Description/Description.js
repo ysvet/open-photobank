@@ -1,12 +1,12 @@
-import React, { Fragment } from "react";
+import React, { Fragment } from 'react';
 
-import styles from "./Description.module.css";
+import styles from './Description.module.css';
 
 const Description = ({ description }) => {
   return (
     <div className={styles.Description}>
       <Fragment>
-        <h1>{description}</h1>
+        <span>{description}</span>
         <hr />
       </Fragment>
     </div>

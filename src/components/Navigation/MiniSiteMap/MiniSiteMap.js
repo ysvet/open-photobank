@@ -23,6 +23,12 @@ const MiniSiteMap = ({
   let historyItem = null;
 
   let showAlbName = null;
+  let showLocName = null;
+
+  locName && locName.length > 25
+    ? (showLocName = locName.slice(0, 25) + '...')
+    : (showLocName = locName);
+
 
   albName && albName.length > 25
     ? (showAlbName = albName.slice(0, 25) + '...')
@@ -44,7 +50,7 @@ const MiniSiteMap = ({
       <span>
         <NavLink to={locLink} exact={exact}>
           {' '}
-          {locName}
+          {showLocName}
         </NavLink>
       </span>
     </div>

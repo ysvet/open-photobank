@@ -36,4 +36,7 @@
   .Period {
     justify-content: center;
   }
+  .Container {
+    margin: 70px auto 40px auto;
+  }
 }

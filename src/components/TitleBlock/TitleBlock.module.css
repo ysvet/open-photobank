@@ -4,17 +4,26 @@
   align-items: center;
   padding: 2px;
   box-sizing: border-box;
+  text-align: right;
 }
 
-.PageTitle h1 {
-  text-align: right;
-  margin: 5px auto 15px auto;
+.PageTitle span {
+  margin: 5px 0px 15px 0px;
   width: 100%;
   color: #364f6b;
+  font-size: 2em;
+  font-weight: bold;
 }
 
 .PageTitle hr {
   background-image: linear-gradient(to bottom right, #364f6b, #96a3b1);
   height: 3px;
   border: none;
+  margin-top: 3px;
+}
+
+@media (max-width: 699px) {
+  .PageTitle span {
+    font-size: 1.2em;
+  }
 }

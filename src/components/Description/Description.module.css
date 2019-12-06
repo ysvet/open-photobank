@@ -4,13 +4,15 @@
   align-items: center;
   padding: 2px;
   box-sizing: border-box;
+  text-align: right;
 }
 
-.Description h1 {
-  text-align: right;
+.Description span {
   margin: 5px auto 15px auto;
   width: 100%;
   color: #364f6b;
+  font-size: 2em;
+  font-weight: bold;
 }
 
 .Description hr {
@@ -18,4 +20,10 @@
   height: 3px;
   border: none;
   width: 100% !important;
+}
+
+@media (max-width: 699px) {
+  .Description span {
+    font-size: 1.5em;
+  }
 }
