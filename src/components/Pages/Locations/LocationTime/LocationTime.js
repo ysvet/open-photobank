@@ -13,6 +13,7 @@ import TitleBlock from '../../../TitleBlock/TitleBlock';
 import PhotoCard from '../../../PhotoCard/PhotoCard';
 import { getLocationTimePhotos } from '../../../../store/actions/location';
 import { getAllPeriods } from '../../../../store/actions/period';
+import { getTimePeriodById } from '../../../../store/actions/period';
 
 import styles from './LocationTime.module.css';
 
@@ -31,8 +32,10 @@ const LocationTime = ({
   },
   photos,
   periods,
+  period,
   getLocationTimePhotos,
   getAllPeriods,
+  getTimePeriodById,
   match,
   location
 }) => {
@@ -67,6 +70,10 @@ const LocationTime = ({
     match.params.idPeriod
   ]);
 
+  useEffect(() => {
+    getTimePeriodById(match.params.idPeriod);
+  }, [getTimePeriodById, match.params.idPeriod]);
+
   const isMounted = useIsMounted();
   useEffect(() => {
     //only if loading is false and still mounted
@@ -100,14 +107,15 @@ const LocationTime = ({
     <Fragment>
       <Head title={locationName} content={locationName} />
       <div className={styles.Container}>
-        {comeFrom && comeFrom.length === 0 && (
-          <TitleBlock pageTitle={locationName} />
+        {comeFrom && comeFrom.length === 0 && period !== null && (
+          <TitleBlock pageTitle={locationName} addInfo={period.periodName} />
         )}
         {(comeFrom.length !== 0 ||
           !loading ||
-          locationID === match.params.id) && (
-          <TitleBlock pageTitle={locationName} />
-        )}
+          locationID === match.params.id) &&
+          period !== null && (
+            <TitleBlock pageTitle={locationName} addInfo={period.periodName} />
+          )}
         {!loading && (
           <div className={styles.DropdownPanel}>
             {' '}
@@ -149,18 +157,22 @@ const LocationTime = ({
 Location.propTypes = {
   getLocationTimePhotos: PropTypes.func.isRequired,
   getAllPeriods: PropTypes.func.isRequired,
+  getTimePeriodById: PropTypes.func.isRequired,
   photos: PropTypes.array.isRequired,
   periods: PropTypes.array.isRequired,
+  period: PropTypes.object.isRequired,
   locationState: PropTypes.object.isRequired
 };
 
 const mapStateToProps = state => ({
   locationState: state.location,
   photos: state.location.photos,
-  periods: state.period.periods
+  periods: state.period.periods,
+  period: state.period.period
 });
 
 export default connect(mapStateToProps, {
   getLocationTimePhotos,
-  getAllPeriods
+  getAllPeriods,
+  getTimePeriodById
 })(LocationTime);

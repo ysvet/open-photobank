@@ -5,13 +5,23 @@
   padding: 2px;
   box-sizing: border-box;
   text-align: right;
+  display: flex;
+  flex-flow: column;
 }
 
-.PageTitle span {
-  margin: 5px 0px 15px 0px;
+.PageTitleSpan {
+  margin: 5px 0px 5px 0px;
   width: 100%;
   color: #364f6b;
   font-size: 2em;
+  font-weight: bold;
+}
+
+.AddInfoSpan {
+  margin: 3px 0px 3px 0px;
+  width: 100%;
+  color: #364f6b;
+  font-size: 1.2em;
   font-weight: bold;
 }
 
@@ -20,10 +30,14 @@
   height: 3px;
   border: none;
   margin-top: 3px;
+  width: 100%;
 }
 
 @media (max-width: 699px) {
-  .PageTitle span {
+  .PageTitleSpan {
     font-size: 1.2em;
+  }
+  .AddInfoSpan {
+    font-size: 1em;
   }
 }

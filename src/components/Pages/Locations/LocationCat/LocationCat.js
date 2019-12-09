@@ -13,6 +13,7 @@ import TitleBlock from '../../../TitleBlock/TitleBlock';
 import PhotoCard from '../../../PhotoCard/PhotoCard';
 import { getLocationCatPhotos } from '../../../../store/actions/location';
 import { getAllCategories } from '../../../../store/actions/category';
+import { getCategoryById } from '../../../../store/actions/category';
 
 import styles from './LocationCat.module.css';
 
@@ -31,8 +32,10 @@ const LocationCat = ({
   },
   photos,
   categories,
+  category,
   getLocationCatPhotos,
   getAllCategories,
+  getCategoryById,
   match,
   location
 }) => {
@@ -67,6 +70,10 @@ const LocationCat = ({
     match.params.idCat
   ]);
 
+  useEffect(() => {
+    getCategoryById(match.params.idCat);
+  }, [getCategoryById, match.params.idCat]);
+
   const isMounted = useIsMounted();
   useEffect(() => {
     //only if loading is false and still mounted
@@ -79,6 +86,8 @@ const LocationCat = ({
       setPhotosData(photosData);
     }
   }, [locationObj, isMounted, loading]);
+
+  console.log(category, 'CATEGORY');
 
   let photoCards = photos.map(photo => (
     <div className={styles.SlideCard} key={photo.photoID}>
@@ -100,20 +109,31 @@ const LocationCat = ({
     <Fragment>
       <Head title={locationName} content={locationName} />
       <div className={styles.Container}>
-        {comeFrom && comeFrom.length === 0 && (
-          <TitleBlock pageTitle={locationName} />
+        {comeFrom && comeFrom.length === 0 && category !== null && (
+          <TitleBlock
+            pageTitle={locationName}
+            addInfo={category.categoryName}
+          />
         )}
         {(comeFrom.length !== 0 ||
           !loading ||
-          locationID === match.params.id) && (
-          <TitleBlock pageTitle={locationName} />
-        )}
-        {!loading && (
+          locationID === match.params.id) &&
+          category !== null && (
+            <TitleBlock
+              pageTitle={locationName}
+              addInfo={category.categoryName}
+            />
+          )}
+        {!loading && category !== null && (
           <div className={styles.DropdownPanel}>
             {' '}
             <div className={styles.Dropdown}>
               {' '}
-              <Dropdown locationID={locationID} categories={categories} />
+              <Dropdown
+                locationID={locationID}
+                categories={categories}
+                addInfo={category.categoryName}
+              />
             </div>
           </div>
         )}
@@ -149,18 +169,22 @@ const LocationCat = ({
 Location.propTypes = {
   getLocationCatPhotos: PropTypes.func.isRequired,
   getAllCategories: PropTypes.func.isRequired,
+  getCategoryById: PropTypes.func.isRequired,
   photos: PropTypes.array.isRequired,
   categories: PropTypes.array.isRequired,
+  category: PropTypes.object.isRequired,
   locationState: PropTypes.object.isRequired
 };
 
 const mapStateToProps = state => ({
   locationState: state.location,
   photos: state.location.photos,
-  categories: state.category.categories
+  categories: state.category.categories,
+  category: state.category.category
 });
 
 export default connect(mapStateToProps, {
   getLocationCatPhotos,
-  getAllCategories
+  getAllCategories,
+  getCategoryById
 })(LocationCat);

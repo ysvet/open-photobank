@@ -201,7 +201,11 @@ router.get('/:location_id/photos/:category_id', async (req, res) => {
 
     const totalPhotos = await Photo.find({
       locationID: req.params.location_id,
-      categoryID: req.params.category_id
+      $or: [
+        { categoryID: req.params.category_id },
+        { categoryID2: req.params.category_id },
+        { categoryID3: req.params.category_id }
+      ]
     }).countDocuments();
 
     const hasNextPage = ITEMS_PER_PAGE * page < totalPhotos;
@@ -212,7 +216,11 @@ router.get('/:location_id/photos/:category_id', async (req, res) => {
 
     const locationPhotos = await Photo.find({
       locationID: req.params.location_id,
-      categoryID: req.params.category_id
+      $or: [
+        { categoryID: req.params.category_id },
+        { categoryID2: req.params.category_id },
+        { categoryID3: req.params.category_id }
+      ]
     })
       .sort({ photoID: +1 })
       .skip((page - 1) * ITEMS_PER_PAGE)
