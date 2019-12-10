@@ -10,6 +10,7 @@ import Layout from './hoc/Layout/Layout';
 import GalleryMainPage from './containers/GalleryMainPage/GalleryMainPage';
 import Categories from './components/Pages/Categories/Categories';
 import Category from './components/Pages/Categories/Category/Category';
+import CategoryTime from './components/Pages/Categories/CategoryTime/CategoryTime';
 import Albums from './components/Pages/Albums/Albums';
 import Album from './components/Pages/Albums/Album/Album';
 import Locations from './components/Pages/Locations/Locations';
@@ -166,6 +167,11 @@ const router = (
         <Route exact path='/latest' component={Latest} />
         <Route exact path='/categories/:id' component={Category} />
         <Route exact path='/categories' component={Categories} />
+        <Route
+          exact
+          path='/categories/:id/period/:idPeriod'
+          component={CategoryTime}
+        />
         <Route exact path='/search' component={ShowSearchResult} />
         <Route exact path='/about' component={About} />
         <Route exact path='/terms' component={Terms} />

@@ -92,7 +92,7 @@ const Location = ({
     </div>
   ));
 
-  const getPhotosHadler = pageNum =>
+  const getPhotosHandler = pageNum =>
     getLocationPhotos(match.params.id, pageNum);
   const comeFrom = location.search;
 
@@ -138,7 +138,7 @@ const Location = ({
               lastPage={lastPage}
               hasPreviousPage={hasPreviousPage}
               previousPage={previousPage}
-              getPhotosHadler={getPhotosHadler}
+              getPhotosHadler={getPhotosHandler}
             />
           </Fragment>
         )}

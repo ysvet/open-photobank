@@ -65,6 +65,29 @@ export const getCategoryPhotos = (categoryID, page) => async dispatch => {
   }
 };
 
+//Get a category with photos by period with pagination
+export const getCategoryTimePhotos = (
+  categoryID,
+  periodID,
+  page
+) => async dispatch => {
+  try {
+    dispatch({ type: LOAD_CATEGORY });
+    const res = await axios.get(
+      `/api/category/${categoryID}/photos-period/${periodID}?page=${page}`
+    );
+    dispatch({
+      type: GET_CATEGORY_PHOTOS,
+      payload: res.data
+    });
+  } catch (err) {
+    dispatch({
+      type: CATEGORIES_ERROR,
+      payload: { msg: err.response.statusText, status: err.response.status }
+    });
+  }
+};
+
 // Create or update category
 export const createCategory = (
   formData,

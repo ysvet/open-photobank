@@ -173,6 +173,70 @@ router.get('/:category_id/photos', async (req, res) => {
   }
 });
 
+//@route GET api/category/:category_id/photos/:period_id
+//@desc Get a category with it's photos by categoryID and by periodID with pagination
+//@access Public
+
+router.get('/:category_id/photos-period/:period_id', async (req, res) => {
+  try {
+    const category = await Category.findOne({
+      categoryID: req.params.category_id
+    });
+
+    if (!category) return res.status(400).json({ msg: 'Category not found' });
+
+    const page = +req.query.page || 1;
+
+    const currentPage = page;
+
+    const totalPhotos = await Photo.find({
+      $or: [
+        { categoryID: req.params.category_id },
+        { categoryID2: req.params.category_id },
+        { categoryID3: req.params.category_id }
+      ],
+      periodID: req.params.period_id
+    }).countDocuments();
+
+    const hasNextPage = ITEMS_PER_PAGE * page < totalPhotos;
+    const hasPreviousPage = page > 1;
+    const nextPage = page + 1;
+    const previousPage = page - 1;
+    const lastPage = Math.ceil(totalPhotos / ITEMS_PER_PAGE);
+
+    const categoryPhotos = await Photo.find({
+      $or: [
+        { categoryID: req.params.category_id },
+        { categoryID2: req.params.category_id },
+        { categoryID3: req.params.category_id }
+      ],
+      periodID: req.params.period_id
+    })
+      .sort({ photoID: +1 })
+      .skip((page - 1) * ITEMS_PER_PAGE)
+      .limit(ITEMS_PER_PAGE);
+
+    res.json({
+      categoryPhotos: categoryPhotos,
+      category: category,
+      totalPhotos: totalPhotos,
+      itemsPerPage: ITEMS_PER_PAGE,
+      currentPage: currentPage,
+      hasNextPage: hasNextPage,
+      nextPage: nextPage,
+      hasPreviousPage: hasPreviousPage,
+      lastPage: lastPage,
+      previousPage: previousPage
+    });
+  } catch (err) {
+    console.error(err.message);
+    if (err.kind === 'ObjectId') {
+      return res.status(400).json({ msg: 'Category not found' });
+    }
+    res.status(500).send('Server error');
+  }
+});
+
 //@route DELETE api/category/:category_id
 //@desc Delete a category
 //@access Private
