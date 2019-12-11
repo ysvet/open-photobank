@@ -9,33 +9,9 @@
   padding: 0.9em;
 }
 
-.Container {
-  margin: 95px auto 40px auto;
-  width: 95%;
-  align-items: center;
-  padding: 2px;
-  box-sizing: border-box;
-}
-
-.SlideCard {
-  padding: 10px;
-}
-
-.WhiteLine {
-  background-color: white;
-  border-top: 1px solid #ddd;
-  width: 100%;
-  height: 125px;
-  position: fixed;
-  bottom: -10px;
-  left: 0px;
-  opacity: 0.9;
-}
-
 .Dropdown {
   margin: 0 auto 0 auto;
   max-width: 1600px;
-  min-width: 300px;
   width: 90%;
   display: flex;
   flex-flow: row wrap;
@@ -56,17 +32,45 @@
   z-index: 90;
 }
 
+.Container {
+  margin: 95px auto 40px auto;
+  width: 95%;
+  align-items: center;
+  padding: 2px;
+  box-sizing: border-box;
+}
+
+.Container h2 {
+  padding: 40px;
+}
+
+.SlideCard {
+  padding: 10px;
+}
+
+.WhiteLine {
+  background-color: white;
+  border-top: 1px solid #ddd;
+  width: 100%;
+  height: 125px;
+  position: fixed;
+  bottom: -10px;
+  left: 0px;
+  opacity: 0.9;
+}
+
 @media (max-width: 699px) {
   .Period {
     justify-content: center;
   }
   .DropdownPanel {
     padding: 0;
-  }
-  .DropdownPanel {
-    flex-flow: column;
+    width: 100%;
   }
   .Dropdown {
     margin: 0 auto;
+  }
+  .Container {
+    margin: 70px auto 40px auto;
   }
 }

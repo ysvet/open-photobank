@@ -18,7 +18,7 @@ router.post('/', auth, async (req, res) => {
   }
   const { locationID, locationName } = req.body;
 
-  // Build contributor object
+  // Build location object
   const locationFields = {};
   if (locationID) locationFields.locationID = locationID;
   if (locationName) locationFields.locationName = locationName;
@@ -247,7 +247,7 @@ router.get('/:location_id/photos/:category_id', async (req, res) => {
   }
 });
 
-//@route GET api/location/:location_id/photos/:period_id
+//@route GET api/location/:location_id/photos-period/:period_id
 //@desc Get an location with it's photos by locationID and by periodID with pagination
 //@access Public
 

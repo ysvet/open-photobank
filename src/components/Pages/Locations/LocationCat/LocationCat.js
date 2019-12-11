@@ -101,7 +101,7 @@ const LocationCat = ({
     </div>
   ));
 
-  const getPhotosHadler = pageNum =>
+  const getPhotosHandler = pageNum =>
     getLocationCatPhotos(match.params.id, match.params.idCat, pageNum);
   const comeFrom = location.search;
 
@@ -155,7 +155,7 @@ const LocationCat = ({
               lastPage={lastPage}
               hasPreviousPage={hasPreviousPage}
               previousPage={previousPage}
-              getPhotosHadler={getPhotosHadler}
+              getPhotosHadler={getPhotosHandler}
             />
           </Fragment>
         )}

@@ -19,6 +19,7 @@ import LocationCat from './components/Pages/Locations/LocationCat/LocationCat';
 import LocationTime from './components/Pages/Locations/LocationTime/LocationTime';
 import Periods from './components/Pages/Periods/Periods';
 import Period from './components/Pages/Periods/Period/Period';
+import PeriodCat from './components/Pages/Periods/PeriodCat/PeriodCat';
 import About from './components/Pages/About/About';
 import Terms from './components/Terms/Terms';
 import Contributors from './components/Pages/Contributors/Contributors';
@@ -150,6 +151,11 @@ const router = (
         <PrivateRoute exact path='/adm/users' component={DashboardUsers} />
         <Route exact path='/time-periods' component={Periods} />
         <Route exact path='/time-periods/:id' component={Period} />
+        <Route
+          exact
+          path='/time-periods/:id/category/:idCat'
+          component={PeriodCat}
+        />
         <Route exact path='/locations' component={Locations} />
         <Route exact path='/locations/:id' component={Location} />
         <Route

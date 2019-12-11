@@ -11,11 +11,13 @@ import Head from '../../../Head/Head';
 import Spinner from '../../../UI/Spinner/Spinner';
 import TitleBlock from '../../../TitleBlock/TitleBlock';
 import PhotoCard from '../../../PhotoCard/PhotoCard';
-import { getPeriodPhotos } from '../../../../store/actions/period';
+import { getPeriodCatPhotos } from '../../../../store/actions/period';
 import { getAllCategories } from '../../../../store/actions/category';
-import styles from './Period.module.css';
+import { getCategoryById } from '../../../../store/actions/category';
 
-const Period = ({
+import styles from './PeriodCat.module.css';
+
+const PeriodCat = ({
   period: {
     period,
     totalPhotos,
@@ -30,8 +32,10 @@ const Period = ({
   },
   photos,
   categories,
-  getPeriodPhotos,
+  category,
+  getPeriodCatPhotos,
   getAllCategories,
+  getCategoryById,
   match,
   location
 }) => {
@@ -58,9 +62,18 @@ const Period = ({
   const pageNow = queryValues.page;
 
   useEffect(() => {
-    getPeriodPhotos(match.params.id, pageNow);
+    getPeriodCatPhotos(match.params.id, match.params.idCat, pageNow);
     getAllCategories();
-  }, [getPeriodPhotos, getAllCategories]);
+  }, [
+    getPeriodCatPhotos,
+    getAllCategories,
+    match.params.id,
+    match.params.idCat
+  ]);
+
+  useEffect(() => {
+    getCategoryById(match.params.idCat);
+  }, [getCategoryById, match.params.idCat]);
 
   const isMounted = useIsMounted();
   useEffect(() => {
@@ -81,27 +94,32 @@ const Period = ({
         <PhotoCard
           title={photo.title}
           cardInfo={photo.locationName}
-          src={`../uploads/thumbs/${photo.photoFileName}`}
+          src={`../../../uploads/thumbs/${photo.photoFileName}`}
         />
       </Link>
     </div>
   ));
 
-  const getPhotosHandler = pageNum => getPeriodPhotos(match.params.id, pageNum);
+  console.log(category, 'CATEGORY');
+
+  const getPhotosHandler = pageNum =>
+    getPeriodCatPhotos(match.params.id, match.params.idCat, pageNum);
   const comeFrom = location.search;
 
   const showPeriod = (
     <Fragment>
       <Head title={periodName} content={periodName} />
       <div className={styles.Container}>
-        {comeFrom && comeFrom.length === 0 && (
-          <TitleBlock pageTitle={periodName} />
+        {comeFrom && comeFrom.length === 0 && category !== null && (
+          <TitleBlock pageTitle={periodName} addInfo={category.categoryName} />
         )}
-        {(comeFrom.length !== 0 ||
-          !loading ||
-          periodID === match.params.id) && (
-          <TitleBlock pageTitle={periodName} />
-        )}
+        {(comeFrom.length !== 0 || !loading || periodID === match.params.id) &&
+          category !== null && (
+            <TitleBlock
+              pageTitle={periodName}
+              addInfo={category.categoryName}
+            />
+          )}
 
         {!loading && (
           <div className={styles.DropdownPanel}>
@@ -139,20 +157,25 @@ const Period = ({
   return <Fragment>{showPeriod}</Fragment>;
 };
 
-Period.propTypes = {
-  getPeriodPhotos: PropTypes.func.isRequired,
+PeriodCat.propTypes = {
+  getPeriodCatPhotos: PropTypes.func.isRequired,
   getAllCategories: PropTypes.func.isRequired,
+  getCategoryById: PropTypes.func.isRequired,
   photos: PropTypes.array.isRequired,
   period: PropTypes.object.isRequired,
+  category: PropTypes.object.isRequired,
   categories: PropTypes.array.isRequired
 };
 
 const mapStateToProps = state => ({
   period: state.period,
   photos: state.period.photos,
-  categories: state.category.categories
+  categories: state.category.categories,
+  category: state.category.category
 });
 
-export default connect(mapStateToProps, { getPeriodPhotos, getAllCategories })(
-  Period
-);
+export default connect(mapStateToProps, {
+  getPeriodCatPhotos,
+  getAllCategories,
+  getCategoryById
+})(PeriodCat);

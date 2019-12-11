@@ -4,6 +4,7 @@ const config = require('config');
 const router = express.Router();
 const auth = require('../../middleware/auth');
 const Period = require('../../models/Period');
+const Photo = require('../../models/Photo');
 const Location = require('../../models/Location');
 const { check, validationResult } = require('express-validator');
 
@@ -18,7 +19,7 @@ router.post('/', auth, async (req, res) => {
   }
   const { periodID, periodName } = req.body;
 
-  // Build contributor object
+  // Build period object
   const periodFields = {};
   if (periodID) periodFields.periodID = periodID;
   if (periodName) periodFields.periodName = periodName;
@@ -28,7 +29,7 @@ router.post('/', auth, async (req, res) => {
     });
     if (period) {
       //update
-      location = await Period.findOneAndUpdate(
+      period = await Period.findOneAndUpdate(
         { periodID: periodID },
         { $set: periodFields },
         { new: true }
@@ -155,6 +156,70 @@ router.get('/:period_id/photos', async (req, res) => {
     console.error(err.message);
     if (err.kind === 'ObjectId') {
       return res.status(400).json({ msg: 'Period not found' });
+    }
+    res.status(500).send('Server error');
+  }
+});
+
+//@route GET api/period/:period_id/photos-category/:category_id
+//@desc Get an period with it's photos by periodID and by categoryID with pagination
+//@access Public
+
+router.get('/:period_id/photos/:category_id', async (req, res) => {
+  try {
+    const period = await Period.findOne({
+      periodID: req.params.period_id
+    });
+
+    if (!period) return res.status(400).json({ msg: 'Period not found' });
+
+    const page = +req.query.page || 1;
+
+    const currentPage = page;
+
+    const totalPhotos = await Photo.find({
+      periodID: req.params.period_id,
+      $or: [
+        { categoryID: req.params.category_id },
+        { categoryID2: req.params.category_id },
+        { categoryID3: req.params.category_id }
+      ]
+    }).countDocuments();
+
+    const hasNextPage = ITEMS_PER_PAGE * page < totalPhotos;
+    const hasPreviousPage = page > 1;
+    const nextPage = page + 1;
+    const previousPage = page - 1;
+    const lastPage = Math.ceil(totalPhotos / ITEMS_PER_PAGE);
+
+    const periodPhotos = await Photo.find({
+      periodID: req.params.period_id,
+      $or: [
+        { categoryID: req.params.category_id },
+        { categoryID2: req.params.category_id },
+        { categoryID3: req.params.category_id }
+      ]
+    })
+      .sort({ photoID: +1 })
+      .skip((page - 1) * ITEMS_PER_PAGE)
+      .limit(ITEMS_PER_PAGE);
+
+    res.json({
+      periodPhotos: periodPhotos,
+      period: period,
+      totalPhotos: totalPhotos,
+      itemsPerPage: ITEMS_PER_PAGE,
+      currentPage: currentPage,
+      hasNextPage: hasNextPage,
+      nextPage: nextPage,
+      hasPreviousPage: hasPreviousPage,
+      lastPage: lastPage,
+      previousPage: previousPage
+    });
+  } catch (err) {
+    console.error(err.message);
+    if (err.kind === 'ObjectId') {
+      return res.status(400).json({ msg: 'Location not found' });
     }
     res.status(500).send('Server error');
   }
