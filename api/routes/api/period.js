@@ -219,7 +219,7 @@ router.get('/:period_id/photos/:category_id', async (req, res) => {
   } catch (err) {
     console.error(err.message);
     if (err.kind === 'ObjectId') {
-      return res.status(400).json({ msg: 'Location not found' });
+      return res.status(400).json({ msg: 'Period not found' });
     }
     res.status(500).send('Server error');
   }
