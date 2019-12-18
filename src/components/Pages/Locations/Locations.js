@@ -2,6 +2,7 @@ import React, { Fragment, useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import AlpabetSorter from 'react-alphabet-sorter';
 
 import Head from '../../Head/Head';
 import TitleBlock from '../../TitleBlock/TitleBlock';
@@ -60,6 +61,7 @@ const Locations = ({ getAllLocations, location: { locations, loading } }) => {
         </Fragment>
         <Fragment>{searchbox}</Fragment>
         <div>
+          <div className={styles.Locations}>{phLoc}</div>
           <div className={styles.Locations}>{photoLocation}</div>
         </div>
       </div>
