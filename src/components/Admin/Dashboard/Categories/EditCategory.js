@@ -124,7 +124,6 @@ const mapStateToProps = state => ({
   category: state.category
 });
 
-export default connect(
-  mapStateToProps,
-  { createCategory, getCategoryById }
-)(withRouter(EditCategory));
+export default connect(mapStateToProps, { createCategory, getCategoryById })(
+  withRouter(EditCategory)
+);

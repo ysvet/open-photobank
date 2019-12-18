@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Navbar from '../../Navbar/Navbar';
 import Alert from '../../Alert/Alert';
+import Spinner from '../../../UI/Spinner/Spinner';
 import styles from '../../Admin.module.css';
 import {
   createLocation,
@@ -14,7 +15,8 @@ import useIsMounted from '../../../../utils/isMounted';
 const EditLocation = ({
   createLocation,
   getLocationById,
-  location: { location, loading },
+  locationObj,
+  loading,
   history,
   match
 }) => {
@@ -32,22 +34,20 @@ const EditLocation = ({
   const isMounted = useIsMounted();
   useEffect(() => {
     //only if loading is false and still mounted
-    if (loading === false && isMounted.current && location !== null) {
-      const { locationID, locationName } = location;
-      //   const locationID = location.LocationID;
-      //   const locationName = location.LocationName;
+    if (loading === false && isMounted.current && locationObj !== null) {
+      const { locationID, locationName } = locationObj;
       setFormData({
         locationID,
         locationName
       });
     }
-  }, [location, isMounted, loading]);
+  }, [locationObj, isMounted, loading]);
 
   const onChange = e =>
     setFormData({ ...formData, [e.target.name]: e.target.value });
   const onSubmit = e => {
     e.preventDefault();
-    createLocation(formData, history);
+    createLocation(formData, history, true);
   };
 
   return (
@@ -60,36 +60,43 @@ const EditLocation = ({
           Edit location
         </h2>
         <Fragment>
-          <form className={styles.Form} onSubmit={e => onSubmit(e)}>
-            <div className={styles.FormGroup}>
-              <input
-                type='text'
-                placeholder='Location'
-                name='locationName'
-                value={locationName}
-                onChange={e => onChange(e)}
-              />
-            </div>
-            <div className={styles.FormGroup}>
-              <input
-                type='text'
-                placeholder='LocationID'
-                name='locationID'
-                value={locationID}
-                onChange={e => onChange(e)}
-              />
-            </div>
-            <input
-              type='submit'
-              className={`${styles.Btn} ${styles.BtnPrimary} ${styles.My1}`}
-            />
-            <Link
-              className={`${styles.Btn} ${styles.BtnLight} ${styles.My1}`}
-              to='/adm/locations'
-            >
-              Go Back
-            </Link>
-          </form>
+          {locationObj === null || loading ? (
+            <Spinner />
+          ) : (
+            <Fragment>
+              <form className={styles.Form} onSubmit={e => onSubmit(e)}>
+                <div className={styles.FormGroup}>
+                  <input
+                    type='text'
+                    placeholder='Location'
+                    name='locationName'
+                    value={locationName}
+                    onChange={e => onChange(e)}
+                  />
+                </div>
+                <div className={styles.FormGroup}>
+                  <input
+                    type='text'
+                    placeholder='LocationID'
+                    name='locationID'
+                    value={locationID}
+                    onChange={e => onChange(e)}
+                    disabled
+                  />
+                </div>
+                <input
+                  type='submit'
+                  className={`${styles.Btn} ${styles.BtnPrimary} ${styles.My1}`}
+                />
+                <Link
+                  className={`${styles.Btn} ${styles.BtnLight} ${styles.My1}`}
+                  to='/adm/locations'
+                >
+                  Go Back
+                </Link>
+              </form>
+            </Fragment>
+          )}
         </Fragment>
       </div>
     </Fragment>
@@ -99,14 +106,15 @@ const EditLocation = ({
 EditLocation.propTypes = {
   createLocation: PropTypes.func.isRequired,
   getLocationById: PropTypes.func.isRequired,
-  location: PropTypes.object.isRequired
+  // locationObj: PropTypes.object.isRequired,
+  loading: PropTypes.bool.isRequired
 };
 
 const mapStateToProps = state => ({
-  location: state.location
+  locationObj: state.location.locationObj,
+  loading: state.location.loading
 });
 
-export default connect(
-  mapStateToProps,
-  { createLocation, getLocationById }
-)(withRouter(EditLocation));
+export default connect(mapStateToProps, { createLocation, getLocationById })(
+  withRouter(EditLocation)
+);

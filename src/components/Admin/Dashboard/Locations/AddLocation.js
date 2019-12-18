@@ -9,7 +9,7 @@ import { createLocation } from '../../../../store/actions/location';
 
 const AddLocation = ({
   createLocation,
-  location: { location, loading },
+  location: { locationObj, loading },
   history
 }) => {
   const [formData, setFormData] = useState({
@@ -25,7 +25,7 @@ const AddLocation = ({
     createLocation(formData, history);
   };
 
-  return loading && location === null ? (
+  return loading && locationObj === null ? (
     <Redirect to='/adm/locations' />
   ) : (
     <Fragment>
@@ -73,7 +73,6 @@ const mapStateToProps = state => ({
   location: state.location
 });
 
-export default connect(
-  mapStateToProps,
-  { createLocation }
-)(withRouter(AddLocation));
+export default connect(mapStateToProps, { createLocation })(
+  withRouter(AddLocation)
+);
