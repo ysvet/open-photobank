@@ -11,12 +11,22 @@ import NotFound from '../../Pages/NotFound/NotFound';
 import Spinner from '../../UI/Spinner/Spinner';
 import MiniSiteMap from '../../Navigation/MiniSiteMap/MiniSiteMap';
 import PhotoDownload from './PhotoDownload/PhotoDownload';
+import AlbumNav from '../../Navigation/AlbumNav/AlbumNav';
 // import AlbumInfo from '../Albums/AlbumInfo/AlbumInfo';
 
 import OpenSeadragonPhoto from './OpenSeaDragonPhoto';
 import { getPhotoById } from '../../../store/actions/photo';
+import { getAlbumPhotosNav } from '../../../store/actions/album';
 
-const Photo = ({ getPhotoById, photo, loading, match, history }) => {
+const Photo = ({
+  getPhotoById,
+  getAlbumPhotosNav,
+  albumPhotos,
+  photo,
+  loading,
+  match,
+  history
+}) => {
   const [photoData, setPhotoData] = useState({
     photoID: match.params.id,
     photoFileName: '',
@@ -138,6 +148,17 @@ const Photo = ({ getPhotoById, photo, loading, match, history }) => {
     }
   }, [loading, photo]);
 
+  //preparing for navigation between photos in an album
+  useEffect(() => {
+    if (photo !== null && albumID !== '') {
+      getAlbumPhotosNav(albumID);
+    }
+  }, [getAlbumPhotosNav, albumID]);
+
+  console.log(albumID, 'ALBUM ID');
+  console.log(albumPhotos, 'ALBUM PHOTOS');
+
+  //showing tiles
   let showPhoto = null;
 
   if (+match.params.id === +photoID) {
@@ -167,8 +188,6 @@ const Photo = ({ getPhotoById, photo, loading, match, history }) => {
     showLicense = '--Short license description--';
   }
 
-  console.log(history, 'HISTORY');
-
   return !photo ? (
     loading || +match.params.id === +photoID ? (
       <Spinner />
@@ -197,7 +216,14 @@ const Photo = ({ getPhotoById, photo, loading, match, history }) => {
         </div>
         <div className={styles.Container}>
           <div className={styles.PhotoPage}>
-            {loading ? <Spinner /> : <Fragment>{showPhoto}</Fragment>}
+            {loading ? (
+              <Spinner />
+            ) : (
+              <Fragment>
+                {showPhoto}
+                <AlbumNav albumPhotos={albumPhotos} photoID={photoID} />
+              </Fragment>
+            )}
             <div className={styles.PhotoDescription}>
               {loading ? (
                 <Spinner />
@@ -356,8 +382,13 @@ Photo.propTypes = {
 const mapStateToProps = state => {
   return {
     photo: state.photo.photo,
-    loading: state.photo.loading
+    loading: state.photo.loading,
+    albumPhotos: state.album.photos
   };
 };
 
-export default connect(mapStateToProps, { getPhotoById })(Photo);
+export default connect(
+  mapStateToProps,
+
+  { getPhotoById, getAlbumPhotosNav }
+)(Photo);

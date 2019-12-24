@@ -31,6 +31,7 @@ export const GET_ALBUM = 'GET_ALBUM';
 export const DELETE_ALBUM = 'DELETE_ALBUM';
 export const LOAD_ALBUM = 'LOAD_ALBUM';
 export const GET_ALBUM_PHOTOS = 'GET_ALBUM_PHOTOS';
+export const GET_ALBUM_PHOTOS_NOPAG = 'GET_ALBUM_PHOTOS_NOPAG';
 export const ALBUMS_ERROR = 'ALBUMS_ERROR';
 export const CLEAR_ALBUM = 'CLEAR_ALBUM';
 export const GET_CATEGORIES = 'GET_CATEGORIES';

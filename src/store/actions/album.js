@@ -6,7 +6,8 @@ import {
   ALBUMS_ERROR,
   LOAD_ALBUM,
   DELETE_ALBUM,
-  GET_ALBUM_PHOTOS
+  GET_ALBUM_PHOTOS,
+  GET_ALBUM_PHOTOS_NOPAG
 } from './actionTypes';
 
 //Get all albums with pagination
@@ -67,6 +68,23 @@ export const getAlbumPhotos = (albumID, page) => async dispatch => {
     const res = await axios.get(`/api/album/${albumID}/photos?page=${page}`);
     dispatch({
       type: GET_ALBUM_PHOTOS,
+      payload: res.data
+    });
+  } catch (err) {
+    dispatch({
+      type: ALBUMS_ERROR,
+      payload: { msg: err.response.statusText, status: err.response.status }
+    });
+  }
+};
+
+//Get an album with photos with no pagination
+export const getAlbumPhotosNav = albumID => async dispatch => {
+  try {
+    dispatch({ type: LOAD_ALBUM });
+    const res = await axios.get(`/api/album/${albumID}/photosNav`);
+    dispatch({
+      type: GET_ALBUM_PHOTOS_NOPAG,
       payload: res.data
     });
   } catch (err) {

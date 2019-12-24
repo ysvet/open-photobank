@@ -207,6 +207,35 @@ router.get('/:album_id/photos', async (req, res) => {
   }
 });
 
+//@route GET api/album/:album_id/photosNav
+//@desc Get an album with it's photos by albumID with no pagination
+//@access Public
+
+router.get('/:album_id/photosNav', async (req, res) => {
+  try {
+    const album = await Album.findOne({
+      albumID: req.params.album_id
+    });
+
+    if (!album) return res.status(400).json({ msg: 'Album not found' });
+
+    const albumPhotos = await Photo.find({
+      albumID: req.params.album_id
+    });
+
+    res.json({
+      albumPhotos: albumPhotos,
+      album: album
+    });
+  } catch (err) {
+    console.error(err.message);
+    if (err.kind === 'ObjectId') {
+      return res.status(400).json({ msg: 'Album not found' });
+    }
+    res.status(500).send('Server error');
+  }
+});
+
 //@route DELETE api/album/:album_id
 //@desc Delete a album
 //@access Private

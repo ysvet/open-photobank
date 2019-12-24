@@ -4,7 +4,8 @@ import {
   ALBUMS_ERROR,
   LOAD_ALBUM,
   DELETE_ALBUM,
-  GET_ALBUM_PHOTOS
+  GET_ALBUM_PHOTOS,
+  GET_ALBUM_PHOTOS_NOPAG
 } from '../actions/actionTypes';
 
 const initialState = {
@@ -66,6 +67,13 @@ const album = (state = initialState, action) => {
         lastPage: payload.lastPage,
         previousPage: payload.previousPage,
         itemsPerPage: payload.itemsPerPage,
+        loading: false
+      };
+    case GET_ALBUM_PHOTOS_NOPAG:
+      return {
+        ...state,
+        photos: payload.albumPhotos,
+        album: payload.album,
         loading: false
       };
     case DELETE_ALBUM:

@@ -1,0 +1,16 @@
+.AlbumNav {
+  margin: 10px auto 3px auto;
+  width: 90%;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  flex-flow: row;
+  padding: 5px;
+  box-sizing: border-box;
+}
+
+.AlbumNav span {
+  padding: 10px;
+  font-weight: bolder;
+}
