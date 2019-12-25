@@ -1,0 +1,78 @@
+.DownBlocks {
+  margin: 10px auto 10px auto;
+  width: 90%;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  flex-flow: row;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+.DownBlock {
+  margin: 10px 5px;
+  width: 280px;
+  min-width: 280px;
+  height: 80px;
+  justify-content: center;
+  text-align: center;
+  box-shadow: 0 2px 3px #ccc;
+  border: 1px solid #ffffe0;
+  padding: 10px;
+  cursor: pointer;
+  background-color: #ffffe0;
+  transition: opacity 0.2s ease-in;
+}
+
+.DownBlockLicense {
+  margin: 10px 5px;
+  width: 280px;
+  min-width: 280px;
+  height: 80px;
+  justify-content: center;
+  text-align: center;
+  box-shadow: 0 2px 3px #ccc;
+  border: 1px solid #b0e0e6;
+  padding: 10px;
+  background-color: #b0e0e6;
+}
+
+.DownBlockHelp {
+  background-color: palegreen;
+  margin: 10px 5px;
+  width: 280px;
+  min-width: 280px;
+  height: 80px;
+  justify-content: center;
+  text-align: center;
+  box-shadow: 0 2px 3px #ccc;
+  border: 1px solid palegreen;
+  padding: 10px;
+  cursor: pointer;
+  transition: opacity 0.2s ease-in;
+}
+
+.DownBlockHelp:hover {
+  opacity: 0.8;
+}
+
+.DownBlock:hover {
+  opacity: 0.8;
+}
+
+.DownBlock h2 {
+  align-self: center;
+}
+
+.DownBlockHelp h4 {
+  align-self: center;
+  padding-top: 10px;
+  color: #364f6b;
+}
+
+@media (max-width: 900px) {
+  .DownBlocks {
+    flex-flow: column;
+  }
+}

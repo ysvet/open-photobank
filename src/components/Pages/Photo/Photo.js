@@ -1,7 +1,6 @@
 import React, { Fragment, useEffect, useState, useRef } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
 import ReactHtmlParser from 'react-html-parser';
 
 import styles from './Photo.module.css';
@@ -10,8 +9,9 @@ import Head from '../../Head/Head';
 import NotFound from '../../Pages/NotFound/NotFound';
 import Spinner from '../../UI/Spinner/Spinner';
 import MiniSiteMap from '../../Navigation/MiniSiteMap/MiniSiteMap';
-import PhotoDownload from './PhotoDownload/PhotoDownload';
+import DownBlocks from './DownBlocks/DownBlocks';
 import AlbumNav from '../../Navigation/AlbumNav/AlbumNav';
+import PhotoDescription from './PhotoDescription';
 // import AlbumInfo from '../Albums/AlbumInfo/AlbumInfo';
 
 import OpenSeadragonPhoto from './OpenSeaDragonPhoto';
@@ -150,13 +150,10 @@ const Photo = ({
 
   //preparing for navigation between photos in an album
   useEffect(() => {
-    if (photo !== null && albumID !== '') {
+    if (photo !== null && albumID) {
       getAlbumPhotosNav(albumID);
     }
   }, [getAlbumPhotosNav, albumID]);
-
-  console.log(albumID, 'ALBUM ID');
-  console.log(albumPhotos, 'ALBUM PHOTOS');
 
   //showing tiles
   let showPhoto = null;
@@ -165,27 +162,6 @@ const Photo = ({
     showPhoto = <OpenSeadragonPhoto photoFileName={photoFileName} />;
   } else {
     showPhoto = null;
-  }
-
-  //function for converting fetched image size in bytes to KB and MB
-  const formatBytes = (a, b) => {
-    if (0 === a) return '0 Bytes';
-    const c = 1024,
-      d = b || 2,
-      e = ['Bytes', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'],
-      f = Math.floor(Math.log(a) / Math.log(c));
-    return parseFloat((a / Math.pow(c, f)).toFixed(d)) + ' ' + e[f];
-  };
-
-  const photoSize = formatBytes(imgSize, 2);
-  let showLicense = '';
-
-  if (license === 'Public Domain') {
-    showLicense = '--Short license description--';
-  } else if (license === 'Attribution (CC BY)') {
-    showLicense = '--Short license description--';
-  } else if (license === 'Attribution-NonCommercial (CC BY-NC)') {
-    showLicense = '--Short license description--';
   }
 
   return !photo ? (
@@ -221,105 +197,36 @@ const Photo = ({
             ) : (
               <Fragment>
                 {showPhoto}
-                <AlbumNav albumPhotos={albumPhotos} photoID={photoID} />
+                {albumID && (
+                  <AlbumNav albumPhotos={albumPhotos} photoID={photoID} />
+                )}
               </Fragment>
             )}
             <div className={styles.PhotoDescription}>
               {loading ? (
                 <Spinner />
               ) : (
-                <Fragment>
-                  <ul>
-                    {photoID ? (
-                      <li>
-                        <strong>ID:</strong> {photoID}
-                      </li>
-                    ) : null}
-                    {title ? (
-                      <li>
-                        <strong>Title:</strong> {title}
-                      </li>
-                    ) : null}
-
-                    {categoryName ? (
-                      <li>
-                        <strong>Category</strong>:{' '}
-                        <Link to={`/categories/${categoryID}`}>
-                          {categoryName}{' '}
-                        </Link>
-                        {categoryName2 ? (
-                          <span>
-                            {' | '}
-                            <Link to={`/categories/${categoryID2}`}>
-                              {categoryName2}{' '}
-                            </Link>
-                          </span>
-                        ) : null}
-                        {categoryName3 ? (
-                          <span>
-                            {' | '}
-                            <Link to={`/categories/${categoryID3}`}>
-                              {categoryName3}{' '}
-                            </Link>
-                          </span>
-                        ) : null}
-                      </li>
-                    ) : null}
-                    {albumName ? (
-                      <li>
-                        <strong>Album:</strong>{' '}
-                        <Link to={`/albums/${albumID}`}>{albumName} </Link>
-                      </li>
-                    ) : null}
-                    {locationName ? (
-                      <li>
-                        <strong>Location:</strong>{' '}
-                        <Link to={`/locations/${locationID}`}>
-                          {locationName}{' '}
-                        </Link>
-                      </li>
-                    ) : null}
-                    {contributorName ? (
-                      <li>
-                        <strong>Contributor:</strong>{' '}
-                        <Link to={`/contributors/${contributorID}`}>
-                          {contributorName}{' '}
-                        </Link>
-                      </li>
-                    ) : null}
-                    {periodName ? (
-                      <li>
-                        <strong>Time period:</strong>{' '}
-                        <Link to={`/time-periods/${periodID}`}>
-                          {periodName}{' '}
-                        </Link>
-                      </li>
-                    ) : null}
-                    {source ? (
-                      <li>
-                        <strong>Source:</strong>
-                        {source}
-                        {sourceWeb ? (
-                          <span>
-                            {' | '}
-                            <a
-                              target='_blank'
-                              rel='noopener noreferrer nofollow'
-                              href={`${sourceWeb}`}
-                            >
-                              {sourceWeb}{' '}
-                            </a>
-                          </span>
-                        ) : null}
-                      </li>
-                    ) : null}
-                    {author ? (
-                      <li>
-                        <strong>Author:</strong> {author}
-                      </li>
-                    ) : null}
-                  </ul>
-                </Fragment>
+                <PhotoDescription
+                  photoID={photoID}
+                  title={title}
+                  categoryName={categoryName}
+                  categoryName2={categoryName2}
+                  categoryName3={categoryName3}
+                  categoryID={categoryID}
+                  categoryID2={categoryID2}
+                  categoryID3={categoryID3}
+                  contributorName={contributorName}
+                  albumID={albumID}
+                  albumName={albumName}
+                  contributorID={contributorID}
+                  periodID={periodID}
+                  periodName={periodName}
+                  locationID={locationID}
+                  locationName={locationName}
+                  author={author}
+                  source={source}
+                  sourceWeb={sourceWeb}
+                />
               )}
             </div>
 
@@ -340,32 +247,13 @@ const Photo = ({
                 </Fragment>
               </div>
             ) : null}
-
-            <div className={styles.DownBlocks}>
-              <Link to={'/contribute'}>
-                <div className={styles.DownBlockHelp}>
-                  <h4>Contribute</h4>
-                </div>
-              </Link>
-              <div className={styles.DownBlockLicense}>
-                <h5>{license}</h5>
-                <h6>{showLicense}</h6>
-              </div>
-              <a
-                href={`../uploads/${photoFileName}`}
-                download={`openphotobank-${title.replace(
-                  /"/g,
-                  ''
-                )}-${contributorName}-${new Date()
-                  .toISOString()
-                  .replace(/:/g, '-')}.jpg`}
-                target='_self'
-              >
-                <div className={styles.DownBlock}>
-                  <PhotoDownload photoSize={photoSize} />
-                </div>
-              </a>
-            </div>
+            <DownBlocks
+              license={license}
+              photoFileName={photoFileName}
+              imgSize={imgSize}
+              title={title}
+              contributorName={contributorName}
+            />
           </div>
         </div>
       </div>
