@@ -158,7 +158,7 @@ router.get('/:location_id/photos', async (req, res) => {
     const locationPhotos = await Photo.find({
       locationID: req.params.location_id
     })
-      .sort({ photoID: +1 })
+      .sort({ photoID: -1 })
       .skip((page - 1) * ITEMS_PER_PAGE)
       .limit(ITEMS_PER_PAGE);
 
@@ -222,7 +222,7 @@ router.get('/:location_id/photos/:category_id', async (req, res) => {
         { categoryID3: req.params.category_id }
       ]
     })
-      .sort({ photoID: +1 })
+      .sort({ photoID: -1 })
       .skip((page - 1) * ITEMS_PER_PAGE)
       .limit(ITEMS_PER_PAGE);
 
@@ -247,7 +247,7 @@ router.get('/:location_id/photos/:category_id', async (req, res) => {
   }
 });
 
-//@route GET api/location/:location_id/photos-period/:period_id
+//@route GET api/location/:location_id/photos/:period_id
 //@desc Get an location with it's photos by locationID and by periodID with pagination
 //@access Public
 
@@ -278,7 +278,7 @@ router.get('/:location_id/photos-period/:period_id', async (req, res) => {
       locationID: req.params.location_id,
       periodID: req.params.period_id
     })
-      .sort({ photoID: +1 })
+      .sort({ photoID: -1 })
       .skip((page - 1) * ITEMS_PER_PAGE)
       .limit(ITEMS_PER_PAGE);
 

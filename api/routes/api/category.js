@@ -149,7 +149,7 @@ router.get('/:category_id/photos', async (req, res) => {
         { categoryID3: req.params.category_id }
       ]
     })
-      .sort({ photoID: +1 })
+      .sort({ photoID: -1 })
       .skip((page - 1) * ITEMS_PER_PAGE)
       .limit(ITEMS_PER_PAGE);
     res.json({
@@ -212,7 +212,7 @@ router.get('/:category_id/photos-period/:period_id', async (req, res) => {
       ],
       periodID: req.params.period_id
     })
-      .sort({ photoID: +1 })
+      .sort({ photoID: -1 })
       .skip((page - 1) * ITEMS_PER_PAGE)
       .limit(ITEMS_PER_PAGE);
 

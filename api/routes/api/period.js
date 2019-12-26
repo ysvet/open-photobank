@@ -136,7 +136,7 @@ router.get('/:period_id/photos', async (req, res) => {
     const periodPhotos = await Photo.find({
       periodID: req.params.period_id
     })
-      .sort({ photoID: +1 })
+      .sort({ photoID: -1 })
       .skip((page - 1) * ITEMS_PER_PAGE)
       .limit(ITEMS_PER_PAGE);
 
@@ -200,7 +200,7 @@ router.get('/:period_id/photos/:category_id', async (req, res) => {
         { categoryID3: req.params.category_id }
       ]
     })
-      .sort({ photoID: +1 })
+      .sort({ photoID: -1 })
       .skip((page - 1) * ITEMS_PER_PAGE)
       .limit(ITEMS_PER_PAGE);
 
