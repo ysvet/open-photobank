@@ -27,41 +27,41 @@ const AlbumNav = ({ albumPhotos, photoID }) => {
     nextPhoto = photoIndex + 1;
   }
 
-  return (
-    arrowLinks.length !== 0 && (
-      <div className={styles.AlbumNav}>
-        <a href={`/photos/${arrowLinks[previousPhoto]}`} target='_self'>
-          <span>
-            <FontAwesomeIcon icon={faArrowLeft} />
-          </span>
-        </a>
+  return arrowLinks.length !== 0 ? (
+    <div className={styles.AlbumNav}>
+      <a href={`/photos/${arrowLinks[previousPhoto]}`} target='_self'>
         <span>
-          {' '}
-          {photoIndex + 1}/{arrowLinks.length}{' '}
+          <FontAwesomeIcon icon={faArrowLeft} />
         </span>
-        <a href={`/photos/${arrowLinks[nextPhoto]}`} target='_self'>
-          <span>
-            <FontAwesomeIcon icon={faArrowRight} />
-          </span>
-        </a>
-      </div>
-    )
-    // arrowLinks.length !== 0 && (
-    //   <div className={styles.AlbumNav}>
-    //     <Link to={`/photos/${arrowLinks[previousPhoto]}`}>
-    //       <span>Previous</span>
-    //     </Link>
-    //     <span>
-    //       {' '}
-    //       {photoIndex + 1}/{arrowLinks.length}{' '}
-    //     </span>
-
-    //     <Link to={`/photos/${arrowLinks[nextPhoto]}`}>
-    //       <span>Next</span>
-    //     </Link>
-    //   </div>
-    // )
+      </a>
+      <span>
+        {' '}
+        {photoIndex + 1}/{arrowLinks.length}{' '}
+      </span>
+      <a href={`/photos/${arrowLinks[nextPhoto]}`} target='_self'>
+        <span>
+          <FontAwesomeIcon icon={faArrowRight} />
+        </span>
+      </a>
+    </div>
+  ) : (
+    <span className={styles.Empty}> </span>
   );
+  // arrowLinks.length !== 0 && (
+  //   <div className={styles.AlbumNav}>
+  //     <Link to={`/photos/${arrowLinks[previousPhoto]}`}>
+  //       <span>Previous</span>
+  //     </Link>
+  //     <span>
+  //       {' '}
+  //       {photoIndex + 1}/{arrowLinks.length}{' '}
+  //     </span>
+
+  //     <Link to={`/photos/${arrowLinks[nextPhoto]}`}>
+  //       <span>Next</span>
+  //     </Link>
+  //   </div>
+  // )
 };
 
 export default AlbumNav;

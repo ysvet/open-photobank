@@ -3,7 +3,6 @@ import React, { Fragment, useEffect, useState, useRef } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import ReactHtmlParser from 'react-html-parser';
-
 import styles from './Photo.module.css';
 
 import Head from '../../Head/Head';
