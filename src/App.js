@@ -14,11 +14,7 @@ const App = () => {
     store.dispatch(loadUser());
   }, []);
 
-  return (
-    <div>
-      <Provider store={store}>{router}</Provider>
-    </div>
-  );
+  return <Provider store={store}>{router}</Provider>;
 };
 
 export default App;
