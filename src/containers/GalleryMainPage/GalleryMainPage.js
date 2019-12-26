@@ -2,7 +2,6 @@ import React, { Fragment, useEffect } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-
 import Head from '../../components/Head/Head';
 
 import SliderBlock from '../Slider/Slider';

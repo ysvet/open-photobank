@@ -1,5 +1,5 @@
 import React from 'react';
-// import { Link, withRouter } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowLeft, faArrowRight } from '@fortawesome/free-solid-svg-icons';
 import styles from './AlbumNav.module.css';
@@ -28,32 +28,39 @@ const AlbumNav = ({ albumPhotos, photoID }) => {
   }
 
   return (
-    <div className={styles.AlbumNav}>
-      <a href={`/photos/${arrowLinks[previousPhoto]}`} target='_self'>
+    arrowLinks.length !== 0 && (
+      <div className={styles.AlbumNav}>
+        <a href={`/photos/${arrowLinks[previousPhoto]}`} target='_self'>
+          <span>
+            <FontAwesomeIcon icon={faArrowLeft} />
+          </span>
+        </a>
         <span>
-          <FontAwesomeIcon icon={faArrowLeft} />
+          {' '}
+          {photoIndex + 1}/{arrowLinks.length}{' '}
         </span>
-      </a>
-      {' | '}
-      <a href={`/photos/${arrowLinks[nextPhoto]}`} target='_self'>
-        <span>
-          <FontAwesomeIcon icon={faArrowRight} />
-        </span>
-      </a>
-    </div>
-    // <div className={styles.AlbumNav}>
-    //   <Link
-    //     onClick={() => this.forceUpdate()}
-    //     to={`/photos/${arrowLinks[previousPhoto]}`}
-    //   >
-    //     <span>Previous</span>
-    //   </Link>
-    //   {' | '}
+        <a href={`/photos/${arrowLinks[nextPhoto]}`} target='_self'>
+          <span>
+            <FontAwesomeIcon icon={faArrowRight} />
+          </span>
+        </a>
+      </div>
+    )
+    // arrowLinks.length !== 0 && (
+    //   <div className={styles.AlbumNav}>
+    //     <Link to={`/photos/${arrowLinks[previousPhoto]}`}>
+    //       <span>Previous</span>
+    //     </Link>
+    //     <span>
+    //       {' '}
+    //       {photoIndex + 1}/{arrowLinks.length}{' '}
+    //     </span>
 
-    //   <Link to={`/photos/${arrowLinks[nextPhoto]}`}>
-    //     <span>Next</span>
-    //   </Link>
-    // </div>
+    //     <Link to={`/photos/${arrowLinks[nextPhoto]}`}>
+    //       <span>Next</span>
+    //     </Link>
+    //   </div>
+    // )
   );
 };
 
