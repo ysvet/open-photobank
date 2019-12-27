@@ -108,7 +108,7 @@ const SliderBlock = ({
 
   //Latest PhotoBlock
 
-  const photoThumbLatest = photoThumb.slice(0, 10);
+  const photoThumbLatest = photoThumb.slice(0, 30);
 
   //Random PhotoBlock
 
