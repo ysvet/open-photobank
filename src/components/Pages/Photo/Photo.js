@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import ReactHtmlParser from 'react-html-parser';
 import styles from './Photo.module.css';
+import { CSSTransitionGroup } from 'react-transition-group';
 
 import Head from '../../Head/Head';
 import NotFound from '../../Pages/NotFound/NotFound';
@@ -190,71 +191,79 @@ const Photo = ({
         <div className={styles.Caption}>
           {+match.params.id === +photoID && <h1>{title}</h1>}
         </div>
+
         <div className={styles.Container}>
-          <div className={styles.PhotoPage}>
-            {loading ? (
-              <Spinner />
-            ) : (
-              <Fragment>
-                {showPhoto}
-                {albumID && (
-                  <AlbumNav albumPhotos={albumPhotos} photoID={photoID} />
-                )}
-              </Fragment>
-            )}
-            <div className={styles.PhotoDescription}>
+          <CSSTransitionGroup
+            transitionName='example'
+            transitionEnterTimeout={5500}
+            transitionLeaveTimeout={300}
+          >
+            <div className={styles.PhotoPage}>
               {loading ? (
                 <Spinner />
               ) : (
-                <PhotoDescription
-                  photoID={photoID}
-                  title={title}
-                  categoryName={categoryName}
-                  categoryName2={categoryName2}
-                  categoryName3={categoryName3}
-                  categoryID={categoryID}
-                  categoryID2={categoryID2}
-                  categoryID3={categoryID3}
-                  contributorName={contributorName}
-                  albumID={albumID}
-                  albumName={albumName}
-                  contributorID={contributorID}
-                  periodID={periodID}
-                  periodName={periodName}
-                  locationID={locationID}
-                  locationName={locationName}
-                  author={author}
-                  source={source}
-                  sourceWeb={sourceWeb}
-                />
+                <Fragment>
+                  {showPhoto}
+                  {albumID && (
+                    <AlbumNav albumPhotos={albumPhotos} photoID={photoID} />
+                  )}
+                </Fragment>
               )}
-            </div>
-
-            <div className={styles.PhotoDescriptionDescr}>
-              {description ? (
-                <Fragment>
-                  {' '}
-                  <span>{ReactHtmlParser(description)}</span>
-                </Fragment>
-              ) : null}
-            </div>
-
-            {albumInfo ? (
-              <div className={styles.PhotoDescriptionDescr}>
-                <Fragment>
-                  {' '}
-                  <span>{ReactHtmlParser(albumInfo)}</span>
-                </Fragment>
+              <div className={styles.PhotoDescription}>
+                {loading ? (
+                  <Spinner />
+                ) : (
+                  <PhotoDescription
+                    photoID={photoID}
+                    title={title}
+                    categoryName={categoryName}
+                    categoryName2={categoryName2}
+                    categoryName3={categoryName3}
+                    categoryID={categoryID}
+                    categoryID2={categoryID2}
+                    categoryID3={categoryID3}
+                    contributorName={contributorName}
+                    albumID={albumID}
+                    albumName={albumName}
+                    contributorID={contributorID}
+                    periodID={periodID}
+                    periodName={periodName}
+                    locationID={locationID}
+                    locationName={locationName}
+                    author={author}
+                    source={source}
+                    sourceWeb={sourceWeb}
+                  />
+                )}
               </div>
-            ) : null}
-            <DownBlocks
-              license={license}
-              photoFileName={photoFileName}
-              imgSize={imgSize}
-              title={title}
-              contributorName={contributorName}
-            />
-          </div>
+
+              <div className={styles.PhotoDescriptionDescr}>
+                {description ? (
+                  <Fragment>
+                    {' '}
+                    <span>{ReactHtmlParser(description)}</span>
+                  </Fragment>
+                ) : null}
+              </div>
+
+              {albumInfo ? (
+                <div className={styles.PhotoDescriptionDescr}>
+                  <Fragment>
+                    {' '}
+                    <span>{ReactHtmlParser(albumInfo)}</span>
+                  </Fragment>
+                </div>
+              ) : null}
+
+              <DownBlocks
+                license={license}
+                photoFileName={photoFileName}
+                imgSize={imgSize}
+                title={title}
+                contributorName={contributorName}
+              />
+            </div>
+          </CSSTransitionGroup>
         </div>
       </div>
     </Fragment>

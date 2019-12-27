@@ -221,7 +221,7 @@ router.get('/:album_id/photosNav', async (req, res) => {
 
     const albumPhotos = await Photo.find({
       albumID: req.params.album_id
-    });
+    }).sort({ photoID: +1 });
 
     res.json({
       albumPhotos: albumPhotos,
