@@ -170,6 +170,8 @@ const EditPhoto = ({
     </option>
   ));
 
+  console.log(match.params.id, 'PARAMS ID');
+
   return (
     <Fragment>
       <Navbar />

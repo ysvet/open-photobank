@@ -102,11 +102,17 @@ const Photos = ({
         </Link>
       </td>
       <td>
-        <Link to={`/adm/edit-photo/${photo.photoID}`}>
+        {/* Not using Link instead of a href because for some editing fields old data is present */}
+        <a href={`/adm/edit-photo/${photo.photoID}`}>
           <button className={`${styles.Btn} ${styles.BtnEdit}`}>
             <FontAwesomeIcon icon={faEdit} />
           </button>
-        </Link>
+        </a>
+        {/* <Link to={`/adm/edit-photo/${photo.photoID}`}>
+          <button className={`${styles.Btn} ${styles.BtnEdit}`}>
+            <FontAwesomeIcon icon={faEdit} />
+          </button>
+        </Link> */}
       </td>
       <td>
         <button
@@ -192,7 +198,4 @@ const mapStateToProps = state => ({
   photo: state.photo
 });
 
-export default connect(
-  mapStateToProps,
-  { getAllPhotos, deletePhoto }
-)(Photos);
+export default connect(mapStateToProps, { getAllPhotos, deletePhoto })(Photos);
